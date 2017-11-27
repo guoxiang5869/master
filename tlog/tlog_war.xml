@@ -1,0 +1,2112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<metalib tagsetversion="1" name="Log" version="2">
+
+
+  <!--//////////////////////////////////////////////
+   ///////服务器状态日志///////////////////////////////
+   /////////////////////////////////////////////////-->
+  <struct   name="GameSvrState"       filter="1"           version="1"                     desc="(必填)服务器状态流水，每5分钟一条日志">
+    <entry  name="dtEventTime"        type="datetime"                                      desc="(必填)格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameIP"            type="string"        size="32"                       desc="(必填)服务器IP" />
+    <entry  name="iZoneAreaID"        type="int"           index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+   ///////玩家注册表///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <struct   name="PlayerRegister"   version="1"     desc="(必填)玩家注册">
+    <entry  name="GameSvrId"          type="string"        size="25"                        desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                       desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"        size="32"                        desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                        defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"           index="1"    defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"        size="64"                        desc="(必填)用户OPENID号" />
+    <entry  name="ClientVersion"      type="string"        size="64"    defaultvalue="NULL" desc="(可选)客户端版本"/>
+    <entry  name="SystemSoftware"     type="string"        size="64"    defaultvalue="NULL" desc="(可选)移动终端操作系统版本"/>
+    <entry  name="SystemHardware"     type="string"        size="64"    defaultvalue="NULL" desc="(可选)移动终端机型"/>
+    <entry  name="TelecomOper"        type="string"        size="64"    defaultvalue="NULL" desc="(必填)运营商"/>
+    <entry  name="Network"            type="string"        size="64"    defaultvalue="NULL" desc="(可选)3G/WIFI/2G"/>
+    <entry  name="ScreenWidth"        type="int"                        defaultvalue="0"    desc="(可选)显示屏宽度"/>
+    <entry  name="ScreenHight"        type="int"                        defaultvalue="0"    desc="(可选)显示屏高度"/>
+    <entry  name="Density"            type="float"                      defaultvalue="0"    desc="(可选)像素密度"/>
+    <entry  name="RegChannel"         type="int"                        defaultvalue="0"    desc="(必填)注册渠道"/>
+    <entry  name="CpuHardware"        type="string"        size="64"    defaultvalue="NULL" desc="(可选)cpu类型|频率|核数"/>
+    <entry  name="Memory"             type="int"                        defaultvalue="0"    desc="(可选)内存信息单位M"/>
+    <entry  name="GLRender"           type="string"        size="64"    defaultvalue="NULL" desc="(可选)opengl render信息"/>
+    <entry  name="GLVersion"          type="string"        size="64"    defaultvalue="NULL" desc="(可选)opengl版本信息"/>
+    <entry  name="DeviceId"           type="string"        size="64"    defaultvalue="NULL" desc="(可选)设备ID"/>
+  </struct>
+
+  <!--//////////////////////////////////////////////
+   ///////玩家登录表///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <struct   name="PlayerLogin"  version="1"    desc="(必填)玩家登陆">
+    <entry  name="GameSvrId"          type="string"        size="25"                            desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                           desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"        size="32"                            desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                        defaultvalue="0"        desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"        type="int"           index="1"    defaultvalue="0"        desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"        size="64"                            desc="(必填)用户OPENID号" />
+    <entry  name="Level"              type="int"                                                desc="(必填)等级" />
+    <entry  name="PlayerFriendsNum"   type="int"                                                desc="(必填)玩家好友数量"/>
+    <entry  name="ClientVersion"      type="string"        size="64"    defaultvalue="NULL"     desc="(必填)客户端版本"/>
+    <entry  name="SystemSoftware"     type="string"        size="64"    defaultvalue="NULL"     desc="(可选)移动终端操作系统版本"/>
+    <entry  name="SystemHardware"     type="string"        size="64"    defaultvalue="NULL"     desc="(必填)移动终端机型"/>
+    <entry  name="TelecomOper"        type="string"        size="64"    defaultvalue="NULL"     desc="(必填)运营商"/>
+    <entry  name="Network"            type="string"        size="64"    defaultvalue="NULL"     desc="(必填)3G/WIFI/2G"/>
+    <entry  name="ScreenWidth"        type="int"                        defaultvalue="0"        desc="(可选)显示屏宽度"/>
+    <entry  name="ScreenHight"        type="int"                        defaultvalue="0"        desc="(可选)显示屏高度"/>
+    <entry  name="Density"            type="float"                      defaultvalue="0"        desc="(可选)像素密度"/>
+    <entry  name="LoginChannel"       type="int"                        defaultvalue="0"        desc="(必填)登录渠道"/>
+    <entry  name="vRoleID"            type="string"        size="64"    defaultvalue="NULL"     desc="(必填)玩家角色ID"/>
+    <entry  name="vRoleName"          type="string"        size="64"    defaultvalue="NULL"     desc="(必填)玩家角色名"/>
+    <entry  name="CpuHardware"        type="string"        size="64"    defaultvalue="NULL"     desc="(可选)cpu类型-频率-核数"/>
+    <entry  name="Memory"             type="int"                        defaultvalue="0"        desc="(可选)内存信息单位M"/>
+    <entry  name="GLRender"           type="string"        size="64"    defaultvalue="NULL"     desc="(可选)opengl render信息"/>
+    <entry  name="GLVersion"          type="string"        size="64"    defaultvalue="NULL"     desc="(可选)opengl版本信息"/>
+    <entry  name="DeviceId"           type="string"        size="64"    defaultvalue="NULL"     desc="(可选)设备ID"/>
+    <entry  name="VipLevel"           type="int"                        defaultvalue="0"        desc="(可选)玩家VIP等级"/>
+    <entry  name="ClientIP"           type="string"        size="64"    defaultvalue="NULL"     desc="客户端ip"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+   ///////玩家登出表///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <struct   name="PlayerLogout"     version="1"     desc="(必填)玩家登出">
+    <entry  name="GameSvrId"          type="string"        size="25"                            desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                           desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"        size="32"                            desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                        defaultvalue="0"        desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"        type="int"           index="1"    defaultvalue="0"        desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"        size="64"                            desc="(必填)用户OPENID号" />
+    <entry  name="OnlineTime"         type="int"                                                desc="(必填)本次登录在线时间(秒)" />
+    <entry  name="Level"              type="int"                                                desc="(必填)等级" />
+    <entry  name="PlayerFriendsNum"   type="int"                                                desc="(必填)玩家好友数量"/>
+    <entry  name="ClientVersion"      type="string"        size="64"    defaultvalue="NULL"     desc="(必填)客户端版本"/>
+    <entry  name="SystemSoftware"     type="string"        size="64"    defaultvalue="NULL"     desc="(可选)移动终端操作系统版本"/>
+    <entry  name="SystemHardware"     type="string"        size="64"    defaultvalue="NULL"     desc="(必填)移动终端机型"/>
+    <entry  name="TelecomOper"        type="string"        size="64"    defaultvalue="NULL"     desc="(必填)运营商"/>
+    <entry  name="Network"            type="string"        size="64"    defaultvalue="NULL"     desc="(必填)3G/WIFI/2G"/>
+    <entry  name="ScreenWidth"        type="int"                        defaultvalue="0"        desc="(可选)显示屏宽度"/>
+    <entry  name="ScreenHight"        type="int"                        defaultvalue="0"        desc="(可选)显示高度"/>
+    <entry  name="Density"            type="float"                      defaultvalue="0"        desc="(可选)像素密度"/>
+    <entry  name="LoginChannel"       type="int"                        defaultvalue="0"        desc="(可选)登录渠道"/>
+    <entry  name="CpuHardware"        type="string"        size="64"    defaultvalue="NULL"     desc="(可选)cpu类型;频率;核数"/>
+    <entry  name="Memory"             type="int"                        defaultvalue="0"        desc="(可选)内存信息单位M"/>
+    <entry  name="GLRender"           type="string"        size="64"    defaultvalue="NULL"     desc="(可选)opengl render信息"/>
+    <entry  name="GLVersion"          type="string"        size="64"    defaultvalue="NULL"     desc="(可选)opengl版本信息"/>
+    <entry  name="DeviceId"           type="string"        size="64"    defaultvalue="NULL"     desc="(可选)设备ID"/>
+    <entry  name="VipLevel"           type="int"                        defaultvalue="0"        desc="(可选)玩家VIP等级"/>
+    <entry  name="hScore"             type="int"                        defaultvalue="0"        desc="(可选)玩家最高战力"/>
+    <entry  name="vRoleId"            type="string"        size="64"    defaultvalue="NULL"     desc="角色Id"/>
+    <entry  name="vRoleName"          type="string"        size="64"    defaultvalue="NULL"     desc="角色名"/>
+    <entry  name="ClientIP"           type="string"        size="64"    defaultvalue="NULL"     desc="客户端ip"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+   ///////游戏货币流水表///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <macrosgroup name="ADDORREDUCE">
+    <macro name="ADD"       value="0" desc="加"/>
+    <macro name="REDUCE"    value="1" desc="减"/>
+  </macrosgroup>
+
+  <macrosgroup name="iMoneyType">
+    <macro name="MT_MONEY"         value="1"         desc="金币"/>
+    <macro name="MT_DIAMOND"       value="2"         desc="钻石"/>
+    <macro name="MT_CURRENCY"      value="3"         desc="竞技币"/>
+    <macro name="MT_CRUSADING"     value="4"         desc="远征币"/>
+    <macro name="MT_GUILDCOIN"     value="5"         desc="公会币"/>
+    <macro name="MT_TREASURECOIN"  value="6"         desc="宝物精华"/>
+    <macro name="MT_LEAGUECOIN"    value="7"         desc="联赛币"/>
+    <macro name="MT_HDUELCOIN"     value="8"         desc="英雄交锋币"/>
+    <macro name="MT_NESTS1"        value="9"         desc="巢穴币1"/>
+    <macro name="MT_NESTS2"        value="10"        desc="巢穴币2"/>
+    <macro name="MT_NESTS3"        value="11"        desc="巢穴币3"/>
+    <macro name="MT_NESTS4"        value="12"        desc="巢穴币4"/>
+    <macro name="MT_TEXP"          value="13"        desc="兵团经验"/>
+    <macro name="MT_FANS"          value="14"        desc="粉丝券"/>
+    <macro name="MT_SOUVENIR"      value="15"        desc="纪念币"/>
+    <macro name="MT_STARFRAG"      value="17"        desc="星辰印记"/>
+    <macro name="MT_ARROW"         value="18"        desc="箭矢"/>
+    <macro name="MT_CBCOIN"        value="19"        desc="gvg货币"/>
+    <macro name="MT_PHYSCAL"       value="20"        desc="体力"/>
+    <macro name="MT_GUILDPOWER"    value="21"        desc="行动力"/>
+    <macro name="MT_EXPCOIN"       value="22"        desc="经验币"/>
+    <macro name="MT_PLANCOIN"      value="23"        desc="元素位面币"/>
+  </macrosgroup>
+
+  <struct   name="MoneyFlow"    version="1"     desc="(必填)货币流水">
+    <entry  name="GameSvrId"          type="string"      size="25"                            desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                         desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"      size="32"                            desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                        defaultvalue="0"      desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"        type="int"         index="1"      defaultvalue="0"      desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"      size="64"                            desc="(必填)用户OPENID号" />
+    <entry  name="Sequence"           type="int"                                              desc="(可选)用于关联一次动作产生多条不同类型的货币流动日志" />
+    <entry  name="Level"              type="int"                                              desc="(必填)玩家等级" />
+    <entry  name="AfterMoney"         type="bigint"                                           desc="(可选)动作后的金钱数" />
+    <entry  name="iMoney"             type="int"                                              desc="(必填)动作涉及的金钱数" />
+    <entry  name="Reason"             type="int"                                              desc="(必填)货币流动一级原因" />
+    <entry  name="SubReason"          type="int"                                              desc="(可选)货币流动二级原因" />
+    <entry  name="AddOrReduce"        type="int"                                              desc="(必填)增加 0/减少 1" />
+    <entry  name="iMoneyType"         type="string"      size="32"                            desc="(必填)钱的类型MONEYTYPE,其它货币类型参考FAQ文档" />
+    <entry  name="iVipLevel"          type="int"                                              desc="(必填)VIP等级"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+   ///////道具流水表///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <macrosgroup name="ADDORREDUCE">
+    <macro name="ADD"       value="0" desc="加"/>
+    <macro name="REDUCE"    value="1" desc="减"/>
+  </macrosgroup>
+
+  <macrosgroup name="iMoneyType">
+    <macro name="MT_MONEY"         value="1"         desc="金币"/>
+    <macro name="MT_DIAMOND"       value="2"         desc="钻石"/>
+    <macro name="MT_CURRENCY"      value="3"         desc="竞技币"/>
+    <macro name="MT_CRUSADING"     value="4"         desc="远征币"/>
+    <macro name="MT_GUILDCOIN"     value="5"         desc="公会币"/>
+    <macro name="MT_TREASURECOIN"  value="6"         desc="宝物精华"/>
+    <macro name="MT_LEAGUECOIN"    value="7"         desc="联赛币"/>
+    <macro name="MT_HDUELCOIN"     value="8"         desc="英雄交锋币"/>
+    <macro name="MT_NESTS1"        value="9"         desc="巢穴币1"/>
+    <macro name="MT_NESTS2"        value="10"        desc="巢穴币2"/>
+    <macro name="MT_NESTS3"        value="11"        desc="巢穴币3"/>
+    <macro name="MT_NESTS4"        value="12"        desc="巢穴币4"/>
+    <macro name="MT_TEXP"          value="13"        desc="兵团经验"/>
+    <macro name="MT_RMB"           value="16"        desc="人民币"/>
+    <macro name="MT_STARFRAG"      value="17"        desc="星辰印记"/>
+    <macro name="MT_ARROWNUM"      value="18"        desc="箭矢"/>
+    <macro name="MT_CBCOIN"        value="19"        desc="gvg货币"/>
+    <macro name="MT_PHYSCAL"       value="20"        desc="体力"/>
+    <macro name="MT_GUILDPOWER"    value="21"        desc="公会行动力"/>
+  </macrosgroup>
+
+  <macrosgroup name="iGoodsType">
+    <macro name="TYPE_1"         value="1"         desc="怪兽碎片"/>
+    <macro name="TYPE_2"         value="2"         desc="符文材料"/>
+    <macro name="TYPE_3"         value="3"         desc="资源材料"/>
+    <macro name="TYPE_4"         value="4"         desc="礼包"/>
+    <macro name="TYPE_5"         value="5"         desc="英雄宝物"/>
+    <macro name="TYPE_6"         value="6"         desc="英雄魂魄"/>
+    <macro name="TYPE_7"         value="7"         desc="宝物进阶材料"/>
+    <macro name="TYPE_8"         value="8"         desc="符文盒子"/>
+    <macro name="TYPE_98"        value="98"        desc="其他道具"/>
+    <macro name="TYPE_99"        value="99"        desc="资源道具"/>
+  </macrosgroup>
+
+  <struct   name="ItemFlow"     version="1"     desc="(必填)道具流水表">
+    <entry  name="GameSvrId"          type="string"       size="25"                             desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                           desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"       size="32"                             desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                            defaultvalue="0"    desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"        type="int"          index="1"         defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"       size="64"                             desc="(必填)玩家" />
+    <entry  name="Level"              type="int"                                                desc="(必填)玩家等级" />
+    <entry  name="Sequence"           type="int"                                                desc="(可填)用于关联一次购买产生多条不同类型的货币日志" />
+    <entry  name="iGoodsType"         type="int"                                                desc="(必填)道具类型" />
+    <entry  name="iGoodsId"           type="int"                                                desc="(必填)道具ID" />
+    <entry  name="Count"              type="int"                                                desc="(必填)数量" />
+    <entry  name="AfterCount"         type="int"                                                desc="(必填)动作后的物品存量" />
+    <entry  name="Reason"             type="int"                                                desc="(必填)道具流动一级原因" />
+    <entry  name="SubReason"          type="int"                                                desc="(必填)道具流动二级原因" />
+    <entry  name="iMoney"             type="int"                                                desc="(必填)花费代币或金币购买道具情况下输出消耗的钱数量，否则填0" />
+    <entry  name="iMoneyType"         type="string"       size="32"                             desc="(必填)钱的类型MONEYTYPE,其它货币类型参考FAQ文档" />
+    <entry  name="AddOrReduce"        type="int"                                                desc="(必填)道具增加 0/减少 1" />
+    <entry  name="iVipLevel"          type="int"                                                desc="(必填)VIP等级"/>
+  </struct>
+
+  <!--//////////////////////////////////////////////
+  ///////人物等级流水表///////////////////////////////
+ /////////////////////////////////////////////////-->
+  <struct   name="PlayerExpFlow"    version="1"     desc="(可选)人物等级流水表">
+    <entry  name="GameSvrId"          type="string"        size="25"                        desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"                                       desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"         type="string"        size="32"                        desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                        defaultvalue="0"    desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"        type="int"           index="1"    defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"        size="64"                        desc="(必填)玩家" />
+    <entry  name="ExpChange"          type="int"                                            desc="(必填)经验变化" />
+    <entry  name="BeforeLevel"        type="int"                                            desc="(可选)动作前等级" />
+    <entry  name="AfterLevel"         type="int"                                            desc="(必填)动作后等级" />
+    <entry  name="Time"               type="int"                                            desc="(必填)升级所用时间(秒)" />
+    <entry  name="Reason"             type="int"                                            desc="(必填)经验流动一级原因" />
+    <entry  name="SubReason"          type="int"                                            desc="(必填)经验流动二级原因" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////社交系统流水表///////////////////////////////
+   /////////////////////////////////////////////////-->
+  <macrosgroup name="SNSTYPE">
+    <macro name="SNSTYPE_SHOWOFF"                 value="0" desc="炫耀"/>
+    <macro name="SNSTYPE_INVITE"                  value="1" desc="邀请"/>
+    <macro name="SNSTYPE_SENDHEART"               value="2" desc="送心"/>
+    <macro name="SNSTYPE_RECEIVEHEART"            value="3" desc="收取心"/>
+    <macro name="SNSTYPE_SENDEMAIL"               value="4" desc="发邮件"/>
+    <macro name="SNSTYPE_RECEIVEEMAIL"            value="5" desc="收邮件"/>
+    <macro name="SNSTYPE_SHARE"                   value="6" desc="分享"/>
+    <macro name="SNSTYPE_OTHER"                   value="7" desc="其他原因"/>
+  </macrosgroup>
+
+  <struct   name="SnsFlow"    version="1"     desc="(必填)SNS流水">
+    <entry  name="GameSvrId"   type="string"    size="25"                      desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime" type="datetime"                                 desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"  type="string"    size="32"                      desc="(必填)游戏APPID" />
+    <entry  name="PlatID"      type="int"                  defaultvalue="0"    desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID" type="int"       index="1"  defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="ActorOpenID" type="string"    size="64"                      desc="(必填)动作发起玩家" />
+    <entry  name="RecNum"      type="int"                                      desc="(可选)接收玩家个数"/>
+    <entry  name="Count"       type="int"                                      desc="(必填)发送的数量"/>
+    <entry  name="SNSType"     type="int"                                      desc="(必填)交互一级类型,其它说明参考FAQ文档" />
+    <entry  name="SNSSubType"  type="int"                                      desc="(可选)交互二级类型" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      /////关卡/副本/对局流水表(关卡/副本/对局结束触发日志)///
+      //////////////////////////////////////////////-->
+  <macrosgroup name="RESULT" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+    <macro name="TIE"         value="2" desc="平局"/>
+  </macrosgroup>
+
+  <macrosgroup name="BATTLETYPE">
+    <macro name="BATTLE_PVE"       value="0" desc="单人游戏"/>
+    <macro name="BATTLE_PVP"       value="1" desc="对战游戏"/>
+    <macro name="BATTLE_OTHER"     value="2" desc="其他对局"/>
+  </macrosgroup>
+
+  <macrosgroup name="SCENE">
+    <macro name="TYPE_1"       value="1"          desc="普通副本"/>
+    <macro name="TYPE_2"       value="2"          desc="精英副本"/>
+    <macro name="TYPE_3"       value="3"          desc="矮人宝屋"/>
+    <macro name="TYPE_4"       value="4"          desc="阴森墓穴"/>
+    <macro name="TYPE_5"       value="5"          desc="龙之国"/>
+    <macro name="TYPE_6"       value="6"          desc="竞技场"/>
+    <macro name="TYPE_7"       value="7"          desc="积分联赛"/>
+    <macro name="TYPE_8"       value="8"          desc="联盟大地图"/>
+    <macro name="TYPE_9"       value="9"          desc="云中城"/>
+    <macro name="TYPE_10"      value="10"         desc="远征"/>
+    <macro name="TYPE_11"      value="11"         desc="游戏活动"/>
+    <macro name="TYPE_12"      value="12"         desc="训练所"/>
+    <macro name="TYPE_13"      value="13"         desc="航海掠夺"/>
+    <macro name="TYPE_14"      value="14"         desc="英雄交锋"/>
+    <macro name="TYPE_15"      value="15"         desc="争霸赛之小组赛"/>
+    <macro name="TYPE_16"      value="16"         desc="争霸赛之晋级赛"/>
+  </macrosgroup>
+
+  <struct name="RoundFlow" version="1" desc="(必填)单局结束数据流水">
+    <entry  name="GameSvrId"     type="string"   size="25"                      desc="(必填)登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"                                desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry  name="vGameAppid"    type="string"   size="32"                      desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                 defaultvalue="0"    desc="(必填)ios 0/android 1"/>
+    <entry  name="iZoneAreaID"   type="int"      index="1"  defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"   size="64"                      desc="(必填)玩家" />
+    <entry  name="BattleID"      type="int"                                     desc="(必填)关卡id或者副本id[副本ID必须有序]，对局时填0" />
+    <entry  name="BattleType"    type="int"                                     desc="(必填)战斗类型 对应BATTLETYPE,其它说明参考FAQ文档" />
+    <entry  name="RoundScore"    type="int"                 defaultvalue="0"    desc="(必填)本局分数,无得分的填0" />
+    <entry  name="RoundTime"     type="int"                                     desc="(必填)对局时长(秒)" />
+    <entry  name="Result"        type="int"                                     desc="(必填)单局结果，参考 Result" />
+    <entry  name="Rank"          type="int"                                     desc="(必填)排名" />
+    <entry  name="Gold"          type="int"                                     desc="(必填)金钱" />
+    <entry  name="scene"         type="int"                                     desc="(必填)战斗场景, 参考SCENE" />
+    <entry  name="star"          type="int"                                     desc="(必填)评星" />
+    <entry  name="score"         type="int"                 defaultvalue="0"    desc="(副本必填)玩家战力" />
+    <entry  name="sweep"         type="int"                 defaultvalue="0"    desc="是否为扫荡：0否其他为次数" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      /////新手引导信息表(每个引导节点结束触发日志)/
+      //////////////////////////////////////////////-->
+  <macrosgroup name="PlatID" desc="不要随意修改，否则影响统计结果">
+    <macro name="IOS"      value="0" desc="ios"/>
+    <macro name="ANDROID"  value="1" desc="android"/>
+  </macrosgroup>
+
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="MAIN"      value="0" desc="主线引导"/>
+    <macro name="SUB"       value="1" desc="支线引导"/>
+  </macrosgroup>
+
+  <struct  name="GuideFlow"     desc="(可选)新手引导信息表">
+    <entry name="GameSvrID"      type="string"   size="25"                     desc="(必填)登录的游戏服务器编号"/>
+    <entry name="dtEventTime"    type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS"/>
+    <entry name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID"/>
+    <entry name="PlatID"         type="int"                                    desc="(必填)ios 0/android 1"/>
+    <entry name="iZoneAreaID"    type="int"      index="1" defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"        type="string"   size="64"                     desc="(必填)玩家"/>
+    <entry name="iGuideID"       type="int"                                    desc="(必填)节点ID(节点ID按实际步骤递增编号)"/>
+    <entry name="iLevel"         type="int"                                    desc="(可选)等级"/>
+    <entry name="vRoleID"        type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+    <entry name="type"           type="int"                                    desc="引导类型,参考TYPE"/>
+    <entry name="iTriggerID"     type="int"                                    desc="(必填)支线引导节点ID"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      ///////VIP等级流水表(VIP等级变化触发日志)/////
+      //////////////////////////////////////////////-->
+  <struct  name="VipLevelFlow"    version="1"     desc="(可选)VIP等级流水表">
+    <entry name="GameSvrID"       type="string"   size="25"                     desc="(必填)登录的游戏服务器编号" />
+    <entry name="dtEventTime"     type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry name="PlatID"          type="int"                                    desc="(必填)ios 0/android 1"/>
+    <entry name="iZoneAreaID"     type="int"      index="1" defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"         type="string"   size="64"                     desc="(必填)玩家" />
+    <entry name="iLevel"          type="int"                                    desc="(必填)玩家等级" />
+    <entry name="iBeforeVipLevel" type="int"                                    desc="(必填)动作前等级" />
+    <entry name="iAfterVipLevel"  type="int"                                    desc="(必填)动作后等级" />
+    <entry name="vRoleID"         type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      ////运营活动流水(活动完成触发日志，这里的活动是周期性的运营活动，比如周年庆的，周末做的充值活动等)/
+      //////////////////////////////////////////////-->
+  <macrosgroup name="iACTIVITYTYPE" desc="根据游戏情况自定义">
+    <macro name="TYPE_1"     value="1"  desc="通用活动(完成指定任务,领取活动奖励)"/>
+    <macro name="TYPE_2"     value="2"  desc="特殊活动"/>
+    <macro name="TYPE_3"     value="3"  desc="加成及折扣类活动"/>
+    <macro name="TYPE_4"     value="4"  desc="展板"/>
+    <macro name="TYPE_5"     value="5"  desc="后端独立入口"/>
+    <macro name="TYPE_6"     value="6"  desc="额外掉落"/>
+    <macro name="TYPE_7"     value="7"  desc="商店刷新必出"/>
+    <macro name="TYPE_8"     value="8"  desc="单笔充值"/>
+    <macro name="TYPE_9"     value="9"  desc="嘉年华"/>
+    <macro name="TYPE_10"    value="10" desc="一元购"/>
+    <macro name="TYPE_11"    value="11" desc="每日折扣活动"/>
+    <macro name="TYPE_12"    value="12" desc="每日充值活动"/>
+    <macro name="TYPE_13"    value="13" desc="限时兵团"/>
+    <macro name="TYPE_14"    value="14" desc="幸运星"/>
+    <macro name="TYPE_15"    value="15" desc="大富翁"/>
+    <macro name="TYPE_16"    value="16" desc="战力排行"/>
+    <macro name="TYPE_17"    value="17" desc="巢穴特惠"/>
+    <macro name="TYPE_21"    value="21" desc="庆典活动"/>
+    <macro name="TYPE_22"    value="22" desc="回流活动"/>
+    <macro name="TYPE_25"    value="25" desc="动态单笔充值"/>
+  </macrosgroup>
+
+  <struct  name="ActivityFlow"    version="1"     desc="(可选)活动流水">
+    <entry name="GameSvrID"      type="string"   size="25"                     desc="(必填)登录的游戏服务器编号" />
+    <entry name="dtEventTime"    type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry name="PlatID"         type="int"                                    desc="(必填)ios 0/android 1"/>
+    <entry name="iZoneAreaID"    type="int"      index="1" defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"        type="string"   size="64"                     desc="(必填)玩家" />
+    <entry name="iLevel"         type="int"                                    desc="(必填)玩家等级"/>
+    <entry name="iVipLevel"      type="int"                                    desc="(必填)VIP等级"/>
+    <entry name="iActivityType"  type="int"                                    desc="(必填)活动类型，如充值类的，登录类的，活动为运营过程中做的一些活动" />
+    <entry name="iActivityID"    type="int"                                    desc="(必填)活动ID，如首冲6元送XXX活动" />
+    <entry name="vRoleID"        type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+    <entry name="subActivityId"  type="int"                                    desc="活动子ID,内容视不同活动而定"/>
+    <entry name="content1"       type="int"                                    desc="活动相关数据1,内容视不同活动而定"/>
+    <entry name="content2"       type="int"                                    desc="活动相关数据2,内容视不同活动而定"/>
+    <entry name="content3"       type="string"   size="64" defaultvalue="NULL" desc="活动相关数据3,内容视不同活动而定"/>
+    <entry name="content4"       type="string"   size="64" defaultvalue="NULL" desc="活动相关数据4,内容视不同活动而定"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      ////任务流水(点击/完成/重做任务触发日志，比如达到50级、60级为任务，可以领取奖励等)/
+      ////任务类型  1主线任务 2日常任务 3觉醒任务
+      //////////////////////////////////////////////-->
+  <macrosgroup name="iTASKTYPE" desc="根据游戏情况自定义">
+    <macro name="TYPE_1"     value="1" desc="主线任务"/>
+    <macro name="TYPE_2"     value="2" desc="日常任务"/>
+    <macro name="TYPE_3"     value="3" desc="觉醒任务"/>
+  </macrosgroup>
+
+  <macrosgroup name="iSTATE" desc="根据游戏情况自定义">
+    <macro name="STATE_1"      value="1" desc="完成"/>
+    <macro name="STATE_2"      value="2" desc="接取"/>
+    <macro name="STATE_3"      value="3" desc="放弃"/>
+  </macrosgroup>
+
+  <struct  name="TaskFlow"    version="1"     desc="(可选)任务流水">
+    <entry name="GameSvrID"      type="string"   size="25"                     desc="(必填)登录的游戏服务器编号" />
+    <entry name="dtEventTime"    type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry name="PlatID"         type="int"                                    desc="(必填)ios 0/android 1"/>
+    <entry name="iZoneAreaID"    type="int"      index="1" defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"        type="string"   size="64"                     desc="(必填)玩家" />
+    <entry name="iLevel"         type="int"                                    desc="(必填)VIP等级"/>
+    <entry name="iVipLevel"      type="int"                                    desc="(必填)VIP等级"/>
+    <entry name="iTaskType"      type="int"                                    desc="(必填)任务类型" />
+    <entry name="iTaskID"        type="int"                                    desc="(必填)任务ID" />
+    <entry name="iState"         type="int"                defaultvalue="1"    desc="(必填)任务操作状态" />
+    <entry name="vRoleID"        type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+    <entry name="active"         type="int"                                    desc="(必填)玩家获得活跃度"/>
+    <entry name="grow"           type="int"                                    desc="(必填)玩家获得成长值"/>
+    <entry name="progress"       type="int"                                    desc="(觉醒任务)觉醒任务进度"/>
+  </struct>
+
+
+  <!--///////////////////////////////////////////////
+      ///////抽奖表(点击抽奖触发日志)////////////////
+      ///////////////////////////////////////////////-->
+  <macrosgroup name="iLOTTERYTYPE" desc="根据游戏情况自定义">
+    <macro name="TYPE_1"      value="1" desc="银钥匙单次抽奖"/>
+    <macro name="TYPE_2"      value="2" desc="银钥匙十连抽"/>
+    <macro name="TYPE_3"      value="3" desc="钻石抽一次"/>
+    <macro name="TYPE_4"      value="4" desc="钻石十连抽"/>
+    <macro name="TYPE_5"      value="5" desc="金钥匙单次抽奖"/>
+    <macro name="TYPE_6"      value="6" desc="金钥匙十连抽"/>
+    <macro name="TYPE_7"      value="7" desc="银钥匙单次免费抽"/>
+    <macro name="TYPE_8"      value="8" desc="金钥匙单次免费抽"/>
+  </macrosgroup>
+
+  <struct  name="LotteryFlow" version="1" desc="(可选)抽奖表">
+    <entry name="GameSvrID"      type="string"   size="25"                     desc="(必填)登录的游戏服务器编号" />
+    <entry name="dtEventTime"    type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry name="vGameAppid"     type="string"   size="64"                     desc="(必填)游戏APPID" />
+    <entry name="PlatID"         type="int"                                    desc="(必填)0是ios，1是安卓"/>
+    <entry name="iZoneAreaID"    type="int"      index="1" defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"        type="string"   size="64"                     desc="(必填)玩家" />
+    <entry name="iLevel"         type="int"                                    desc="(必填)玩家等级" />
+    <entry name="iVipLevel"      type="int"                                    desc="(必填)VIP等级"/>
+    <entry name="iLotteryType"   type="int"                                    desc="(必填)抽取类型 参考iLotteryType，如钻石十连抽，金币抽一次等"/>
+    <entry name="iMoney"         type="int"                                    desc="(必填)金额"/>
+    <entry name="vRoleID"        type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      //////////公会流水(有公会行为时触发日志)//////
+      //////////////////////////////////////////////-->
+  <macrosgroup name="iACTTYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1" desc="创建"/>
+    <macro name="TYPE_2"      value="2" desc="解散"/>
+    <macro name="TYPE_3"      value="3" desc="升级"/>
+    <macro name="TYPE_4"      value="4" desc="加入"/>
+    <macro name="TYPE_5"      value="5" desc="退出"/>
+    <macro name="TYPE_6"      value="6" desc="公会科技升级"/>
+    <macro name="TYPE_7"      value="7" desc="成员加入群"/>
+    <macro name="TYPE_8"      value="8" desc="成员退出群"/>
+    <macro name="TYPE_9"      value="9" desc="会长绑定群"/>
+    <macro name="TYPE_10"     value="10" desc="会长解散群"/>
+  </macrosgroup>
+  
+    <macrosgroup name="TECHTYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1" desc="捐献暴击率提升"/>
+    <macro name="TYPE_2"      value="2" desc="联盟人数上限增加"/>
+    <macro name="TYPE_3"      value="3" desc="捐献次数提升"/>
+    <macro name="TYPE_4"      value="4" desc="请求CD减少"/>
+    <macro name="TYPE_5"      value="5" desc="捐献次数增加"/>
+    <macro name="TYPE_6"      value="6" desc="捐献持续时间增加"/>
+    <macro name="TYPE_7"      value="7" desc="金币红包领取数量及份数"/>
+    <macro name="TYPE_8"      value="8" desc="钻石红包领取数量及份数"/>
+    <macro name="TYPE_9"      value="9" desc="宝物进阶石红包领取数量及份数"/>
+    <macro name="TYPE_10"     value="10" desc="抢红包与发红包次数"/>
+    <macro name="TYPE_11"     value="11" desc="每次补给箭的数量"/>
+    <macro name="TYPE_12"     value="12" desc="箭的伤害"/>
+    <macro name="TYPE_13"     value="13" desc="大招每秒减少的能量值"/>
+  </macrosgroup>
+
+  <struct  name="GuildFlow"     version="1"     desc="(可选)公会流水">
+    <entry name="GameSvrID"      type="string"   size="25"                     desc="(必填)登录的游戏服务器编号" />
+    <entry name="dtEventTime"    type="datetime"                               desc="(必填)游戏事件的时间, 格式 YYYY-MM-DD HH:MM:SS" />
+    <entry name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry name="PlatID"         type="int"                                    desc="(必填)ios 0/android 1" />
+    <entry name="iZoneAreaID"    type="int"                defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0" />
+    <entry name="vopenid"        type="string"   size="64"                     desc="(必填)玩家" />
+    <entry name="iLevel"         type="int"                                    desc="(必填)玩家等级" />
+    <entry name="iVipLevel"      type="int"                defaultvalue="0"    desc="(必填)VIP等级"/>
+    <entry name="iActType"       type="int"                                    desc="(必填)操作类型(自动升级时openid可为空)" />
+    <entry name="iGuildID"       type="int"                                    desc="(必填)公会ID" />
+    <entry name="iGuildLevel"    type="int"                                    desc="(必填)公会等级" />
+    <entry name="iMemberNum"     type="int"                                    desc="(必填)操作后公会人数(解散时成员为0)" />
+    <entry name="vRoleID"        type="string"   size="64" defaultvalue="NULL" desc="(必填)玩家角色ID"/>
+    <entry name="techType"       type="int"                                    desc="(iActType不为6时记为0)联盟科技类型 参考TECHTYPE" />
+    <entry name="techLevel"      type="int"                                    desc="(iActType不为6时记为0)升级后联盟科技等级" />
+  </struct>
+
+
+  <!--///////////////////////////////////////////// 英雄无敌 特性日志/////////////////////////////////////////////////// -->
+  <!--//////////////////////////////////////////////
+    ///////五分钟在线日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="online" filter="1"  version="1"  desc="5分钟在线日志">
+    <entry  name="GameSvrId"        type="string"      size="32"                        desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"      type="datetime"    index="1"   defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"       type="string"      size="32"                        desc="(必填)游戏APPID" />
+    <entry  name="PlatID"           type="int"                     defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"      type="int"         index="1"   defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="num"              type="int"                                          desc="人数" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////远征流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果" >
+    <macro name="BATTLE"      value="1" desc="战斗"/>
+    <macro name="BOX"         value="2" desc="宝箱"/>
+    <macro name="EVENT"       value="3" desc="事件"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="crusade"     filter="1"      version="1"     desc="远征流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="StageId"       type="int"                                       desc="关卡ID" />
+    <entry  name="type"          type="int"                                       desc="参考TYPE状态" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"			 type="int"					  defaultvalue="0"    desc="战斗进行的时长(秒)" />
+    <entry  name="sweep"  	     type="int"					  defaultvalue="0"    desc="是否为扫荡:0否其他为次数" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////PVE活动副本参与流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果" >
+    <macro name="DRAGON"      value="1" desc="龙之国"/>
+    <macro name="DWARF"       value="2" desc="矮人宝屋"/>
+    <macro name="VAULT"       value="3" desc="阴森墓穴"/>
+  </macrosgroup>
+
+  <struct  name="pveActityStage"    filter="1"     version="1"    desc="PVE活动副本流水日志">
+    <entry  name="GameSvrId"      type="string"   size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                  defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                      desc="vip等级" />
+    <entry  name="type"           type="int"                                      desc="PVE活动类型,参考TYPE类型" />
+    <entry  name="time"			  type="int"				  defaultvalue="0"    desc="战斗进行的时长(秒)" />
+    <entry  name="sweep"    	  type="int"				  defaultvalue="0"    desc="是否为扫荡:0否其他为次数" />
+    <entry  name="diff"           type="int"				  defaultvalue="0"    desc="难度" />
+    <entry  name="value"          type="int"				  defaultvalue="0"    desc="奖励值" />
+    <entry  name="id"             type="int"                  defaultvalue="0"    desc="关卡id" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////PVP系统参与流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果" >
+    <macro name="ARENA"       value="1" desc="竞技场"/>
+    <macro name="LEAGUE"      value="2" desc="积分联赛"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="pvpActityStage"    filter="1"     version="1"    desc="PVP活动副本流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                      desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                      desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                      desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                      desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                      desc="vip等级" />
+    <entry  name="type"          type="int"                                      desc="PVP类型,参考TYPE" />
+    <entry  name="status"        type="int"                                      desc="参考ATKSTATUS状态" />
+    <entry  name="time"			 type="int"					  defaultvalue="0"   desc="战斗进行的时长(秒)" />
+    <entry  name="sweep"		 type="int"					  defaultvalue="0"   desc="是否为扫荡:0否其他为次数" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////商城购买流水///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="iMoneyType">
+    <macro name="MT_MONEY"         value="1"         desc="金币"/>
+    <macro name="MT_DIAMOND"       value="2"         desc="钻石"/>
+    <macro name="MT_CURRENCY"      value="3"         desc="竞技币"/>
+    <macro name="MT_CRUSADING"     value="4"         desc="远征币"/>
+    <macro name="MT_GUILDCOIN"     value="5"         desc="公会币"/>
+    <macro name="MT_TREASURECOIN"  value="6"         desc="宝物精华"/>
+    <macro name="MT_LEAGUECOIN"    value="7"         desc="联赛币"/>
+    <macro name="MT_HDUELCOIN"     value="8"         desc="英雄交锋币"/>
+    <macro name="MT_NESTS1"        value="9"         desc="巢穴币1"/>
+    <macro name="MT_NESTS2"        value="10"        desc="巢穴币2"/>
+    <macro name="MT_NESTS3"        value="11"        desc="巢穴币3"/>
+    <macro name="MT_NESTS4"        value="12"        desc="巢穴币4"/>
+    <macro name="MT_TEXP"          value="13"        desc="兵团经验"/>
+    <macro name="MT_FANS"          value="14"        desc="粉丝券"/>
+    <macro name="MT_SOUVENIR"      value="15"        desc="纪念币"/>
+    <macro name="MT_RMB"           value="16"        desc="人民币"/>
+  </macrosgroup>
+  
+  <macrosgroup name="IGOODTYPE">
+    <macro name="GT_MONEY"         value="gold"         desc="金币"/>
+    <macro name="GT_DIAMOND"       value="gem"          desc="钻石"/>
+    <macro name="GT_NESTS1"        value="nests1"       desc="巢穴币1"/>
+    <macro name="GT_NESTS2"        value="nests2"       desc="巢穴币2"/>
+    <macro name="GT_NESTS3"        value="nests3"       desc="巢穴币3"/>
+    <macro name="GT_NESTS4"        value="nests4"       desc="巢穴币4"/>
+    <macro name="GT_TOOL"          value="tool"         desc="道具"/>
+  </macrosgroup>
+  
+  <macrosgroup name="ISHOPTYPE">
+    <macro name="ST_MYSTERY"       value="mystery"      desc="神秘商店"/>
+    <macro name="ST_ARENA"         value="arena"        desc="竞技场商店"/>
+    <macro name="ST_CRUSADE"       value="crusade"      desc="远征商店"/>
+    <macro name="ST_TREASURE"      value="treasure"     desc="宝物商店"/>
+    <macro name="ST_GUILD"         value="guild"        desc="联盟商店"/>
+    <macro name="ST_LEAGUE"        value="league"       desc="积分联赛商店"/>
+    <macro name="ST_CITYBATTLE"    value="citybattle"   desc="GVG商店"/>
+    <macro name="ST_HERODUEL"      value="heroDuel"     desc="英雄交锋商店"/>
+    <macro name="ST_ZHIGOU"        value="zhigou"       desc="直购商店"/>
+    <macro name="ST_GODWAR"        value="godWar"       desc="争霸赛商店"/>
+    <macro name="ST_ONERMB"        value="oneRMB"       desc="一元购"/>
+    <macro name="ST_HDAVATAR"      value="HDAvatar"     desc="交锋头像商店"/>
+    <macro name="ST_HDSKIN"        value="HDSkin"       desc="交锋皮肤商店"/>
+  </macrosgroup>
+
+  <struct name="shopStream"         filter="1"           version="1"    desc="商城购买流水日志">
+    <entry  name="GameSvrId"    type="string"      size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"  type="datetime"    index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"   type="string"      size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"       type="int"                     defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"  type="int"         index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"      type="string"      size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"      type="string"      size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"     type="int"                                         desc="vip等级" />
+    <entry  name="goodId"       type="int"                                         desc="道具ID,0表示非道具" />
+    <entry  name="num"          type="int"                                         desc="数量" />
+    <entry  name="price"        type="int"                                         desc="单价" />
+    <entry  name="iMoney"       type="int"                                         desc="(必填)所消耗货币的数量" />
+    <entry  name="iMoneyType"   type="string"      size="32"                       desc="(必填)所消耗货币的类型,参见IMONEYTYPE" />
+    <entry  name="goodType"     type="string"      size="32"                       desc="(必填)物品类型,参见IGOODTYPE" />
+    <entry  name="shopType"     type="string"      size="32"                       desc="(必填)商店类型,参见ISHOPTYPE" />
+    <entry  name="afterMoney"   type="int"                                         desc="(必填)消耗后货币数量" />
+    <entry  name="afterVipExp"  type="int"                                         desc="(必填)买之后的vip经验" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////用户快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct name="user"   filter="1"    version="1"   desc="用户快照">
+    <entry  name="GameSvrId"          type="string"      size="32"      desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"    index="1"  defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"      size="32"                      desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                    defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"         index="1"  defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"      size="64"                      desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"      size="64"                      desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                        desc="vip等级" />
+    <entry  name="uid"                type="int"                                        desc="用户ID" />
+    <entry  name="level"              type="int"                                        desc="角色等级" />
+    <entry  name="gem"                type="bigint"                                     desc="游戏内钻石数量" />
+    <entry  name="dtRegisterTime"     type="datetime"                                   desc="注册时间" />
+    <entry  name="dtLastLoginTime"    type="datetime"                                   desc="最后登录时间" />
+    <entry  name="stayStageId"        type="int"                                        desc="驻留普通关卡Id(通过的最后一关)" />
+    <entry  name="stayEliteId"        type="int"                                        desc="驻留精英关卡Id(通过的最后一关)" />
+    <entry  name="currency"           type="bigint"                                     desc="竞技币" />
+    <entry  name="crusading"          type="bigint"                                     desc="远征币" />
+    <entry  name="treasureCoin"       type="bigint"                                     desc="宝物精华" />
+    <entry  name="starNum"            type="bigint"                                     desc="星星数量" />
+    <entry  name="guildCoin"          type="bigint"                                     desc="公会币" />
+    <entry  name="leagueCoin"         type="bigint"                                     desc="联赛币" />
+    <entry  name="crusadeProgress"    type="int"                                        desc="远征当天最高关卡" />
+    <entry  name="arenaRank"          type="bigint"                                     desc="竞技场当天最高排名" />
+    <entry  name="isGuildMember"      type="int"                                        desc="公会id(0:没有工会)" />
+    <entry  name="score"              type="int"                                        desc="战力" />
+    <entry  name="payGemTotal"        type="bigint"                                     desc="累计充值钻石数量" />
+    <entry  name="teamNum"            type="bigint"                                     desc="玩家持有兵团数量" />
+    <entry  name="teamMaxStar"        type="bigint"                                     desc="玩家持有兵团最高星级" />
+    <entry  name="teamMaxStage"       type="bigint"                                     desc="玩家持有兵团最高阶数" />
+    <entry  name="treasureScore"      type="bigint"                                     desc="宝物总战力" />
+    <entry  name="loginChannel"       type="int"                defaultvalue="0"        desc="(必填)登录渠道"/>
+    <entry  name="guide"              type="int"                defaultvalue="0"        desc="新手引导节点驻留,10000为引导完毕"/>
+    <entry  name="active"             type="int"                                        desc="玩家活跃度" />
+    <entry  name="privilege"          type="int"                                        desc="特权等级" />
+    <entry  name="subGuide"           type="int"                                        desc="支线引导驻留" />
+    <entry  name="cloudycity"         type="int"                                        desc="云中城最高关卡" />
+    <entry  name="guildLevel"         type="int"                                        desc="公会等级" />
+    <entry  name="DeviceId"           type="string"  size="64"  defaultvalue="NULL"     desc="设备ID"/>
+    <entry  name="dailyChargeGem"     type="bigint"                                     desc="当天充值钻石数量"/>
+    <entry  name="teamScore"          type="int"                                        desc="兵团战斗力" />
+    <entry  name="heroScore"          type="int"                                        desc="英雄战斗力" />
+    <entry  name="pokeScore"          type="int"                                        desc="图鉴战斗力" />
+    <entry  name="talentScore"        type="int"                                        desc="魔法行会战斗力" />
+    <entry  name="gold"               type="bigint"                                     desc="金币"/>
+    <entry  name="costGuildAc"        type="bigint"                                     desc="公会大地图移动次数"/>
+    <entry  name="treasureStone"      type="bigint"                                     desc="进阶石存量"/>
+    <entry  name="costGem"            type="bigint"                                     desc="当天消耗钻石(参考,准确值需查流水)"/>
+    <entry  name="costGold"           type="bigint"                                     desc="当天消耗金币(参考,准确值需查流水)"/>
+    <entry  name="texp"               type="bigint"             defaultvalue="0"        desc="兵团经验存量"/>
+    <entry  name="nests1"             type="bigint"             defaultvalue="0"        desc="巢穴货币1"/>
+    <entry  name="nests2"             type="bigint"             defaultvalue="0"        desc="巢穴货币2"/>
+    <entry  name="nests3"             type="bigint"             defaultvalue="0"        desc="巢穴货币3"/>
+    <entry  name="starfrag"           type="bigint"             defaultvalue="0"        desc="星魂"/>
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////PVE系统参与流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE">
+    <macro name="STAGE"       value="0" desc="普通副本"/>
+    <macro name="ELITESTAGE"  value="1" desc="地下城副本"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <macrosgroup name="SWEEP">
+    <macro name="MANUAL"      value="0"  desc="人工攻打"/>
+    <macro name="SWEEP_1"     value="1"  desc="扫荡1次"/>
+    <macro name="SWEEP_10"    value="10" desc="扫荡10次"/>
+  </macrosgroup>
+
+  <struct  name="pveStage"    filter="1"      version="1"    desc="PVE副本流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="stageId"       type="bigint"                                    desc="副本ID" />
+    <entry  name="type"          type="int"                                       desc="参考TYPE类型" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"			 type="int"					  defaultvalue="0"    desc="战斗进行的时长(秒)" />
+    <entry  name="sweep"	     type="int"					  defaultvalue="0"    desc="是否开启扫荡,参考SWEEP状态" />
+    <entry  name="star"          type="int"                                       desc="评星(扫荡时此处为0)" />
+    <entry  name="score"         type="int"                                       desc="玩家战力(扫荡时此处为0)" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////兵团持有与出战表格///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="teamType">
+    <macro name="TYPE1"       value="1" desc="输出"/>
+    <macro name="TYPE2"       value="2" desc="防御"/>
+    <macro name="TYPE3"       value="3" desc="突击"/>
+    <macro name="TYPE4"       value="4" desc="远程"/>
+    <macro name="TYPE5"       value="5" desc="魔法"/>
+  </macrosgroup>
+
+  <macrosgroup name="teamStatus">
+    <macro name="ON"        value="1" desc="派遣"/>
+    <macro name="OFF"       value="0" desc="空闲"/>
+  </macrosgroup>
+
+  <struct  name="team"  filter="1"  version="1"   desc="兵团持有与出战表格">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="Sequence"       type="int"                                    desc="(可填)用于关联同一批日志" />
+    <entry  name="teamId"         type="int"                                    desc="兵团ID" />
+    <entry  name="teamType"       type="int"                                    desc="兵团类型, 参考teamType类型" />
+    <entry  name="teamStatus"     type="int"                                    desc="兵团是否出战, 参考teamStatus类型" />
+    <entry  name="teamStage"      type="int"                                    desc="兵团阶" />
+    <entry  name="teamStar"       type="int"                                    desc="兵团星级" />
+    <entry  name="teamScore"      type="bigint"                                 desc="兵团战力" />
+    <entry  name="teamLevel"      type="int"                                    desc="兵团等级" />
+    <entry  name="teamBoost1"     type="int"                                    desc="兵团技巧培养1等级" />
+    <entry  name="teamBoost2"     type="int"                                    desc="兵团技巧培养2等级" />
+    <entry  name="teamBoost3"     type="int"                                    desc="兵团技巧培养3等级" />
+    <entry  name="teamBoost4"     type="int"                                    desc="兵团技巧培养4等级" />
+    <entry  name="teamBoost5"     type="int"                                    desc="兵团技巧培养5等级" />
+    <entry  name="teamBoost6"     type="int"                                    desc="兵团技巧培养6等级" />
+    <entry  name="teamBoost7"     type="int"                                    desc="兵团技巧培养7等级" />
+    <entry  name="teamBoost8"     type="int"                                    desc="兵团技巧培养8等级" />
+    <entry  name="teamBoost9"     type="int"                                    desc="兵团技巧培养9等级" />
+    <entry  name="skillLevel1"    type="int"                                    desc="兵团技能1等级(-1表示未解锁)" />
+    <entry  name="skillLevel2"    type="int"                                    desc="兵团技能2等级" />
+    <entry  name="skillLevel3"    type="int"                                    desc="兵团技能3等级" />
+    <entry  name="skillLevel4"    type="int"                                    desc="兵团技能4等级" />
+    <entry  name="potential1"     type="int"                                    desc="兵团潜能1等级" />
+    <entry  name="potential2"     type="int"                                    desc="兵团潜能2等级" />
+    <entry  name="potential3"     type="int"                                    desc="兵团潜能3等级" />
+    <entry  name="talentScore"    type="int"                                    desc="兵团天赋战力" />
+    <entry  name="awakingLevel"   type="int"                                    desc="觉醒等级" />
+    <entry  name="awakingTree1"   type="int"                                    desc="觉醒天赋树1" />
+    <entry  name="awakingTree2"   type="int"                                    desc="觉醒天赋树2" />
+    <entry  name="awakingTree3"   type="int"                                    desc="觉醒天赋树3" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////英雄持有与出战表格///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="heroStatus">
+    <macro name="ON"        value="1" desc="切换到上阵状态"/>
+    <macro name="OFF"       value="0" desc="切换到未上阵状态"/>
+  </macrosgroup>
+
+  <struct  name="hero" filter="1"  version="1" desc="英雄持有与出战表格">
+    <entry  name="GameSvrId"          type="string"    size="32"                              desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"  index="1"  defaultvalue="0"            desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"    size="32"                              desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                  defaultvalue="0"            desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"       index="1"  defaultvalue="0"            desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"    size="64"                              desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"    size="64"                              desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                              desc="vip等级" />
+    <entry  name="Sequence"           type="int"                                              desc="(可填)用于关联同一批日志" />
+    <entry  name="heroId"             type="int"                                              desc="(必填)英雄ID" />
+    <entry  name="heroStar"           type="int"                                              desc="(必填)英雄星级" />
+    <entry  name="heroStatus"         type="int"                                              desc="(必填)英雄出战状态, 参考heroStatus类型" />
+    <entry  name="spellLvl1Level"     type="int"                  defaultvalue="NULL"         desc="法术1等级" />
+    <entry  name="spellLvl2Level"     type="int"                  defaultvalue="NULL"         desc="法术2等级" />
+    <entry  name="spellLvl3Level"     type="int"                  defaultvalue="NULL"         desc="法术3等级" />
+    <entry  name="spellLvl4Level"     type="int"                  defaultvalue="NULL"         desc="法术4等级" />
+    <entry  name="masteryLvl1Id"      type="int"                  defaultvalue="NULL"         desc="专精1Id" />
+    <entry  name="masteryLvl2Id"      type="int"                  defaultvalue="NULL"         desc="专精2Id" />
+    <entry  name="masteryLvl3Id"      type="int"                  defaultvalue="NULL"         desc="专精3Id" />
+    <entry  name="masteryLvl4Id"      type="int"                  defaultvalue="NULL"         desc="专精4Id" />
+    <entry  name="heroScore"          type="bigint"                                           desc="英雄战力" />
+    <entry  name="skin"               type="int"                                              desc="英雄使用皮肤" />
+    <entry  name="allSkins"           type="string"   size="64"                               desc="英雄所有皮肤" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////宝物进度养成表格///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="treasure"    filter="1"      version="1"     desc="宝物进度养成表格">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="Sequence"        type="int"                                    desc="(可填)用于关联同一批日志" />
+    <entry  name="treasureId"      type="int"                                    desc="宝物ID" />
+    <entry  name="treasureLevel"   type="int"                                    desc="宝物等级" />
+    <entry  name="treasureScore"   type="bigint"                                 desc="宝物战斗力" />
+    <entry  name="treasureDevIds"  type="string"   size="64"                     desc="组件宝物Id,id1#id2#..." />
+    <entry  name="treasureDevLvs"  type="string"   size="64"                     desc="组件宝物等级, lv1#lv2#..." />
+    <entry  name="treasureDevBStars" type="string"   size="64"                   desc="组件宝物大星星级, 1#2#3..." />
+    <entry  name="treasureDevSStars" type="string"   size="64"                   desc="组件宝物小星星级, 1#2#3..." />
+    <entry  name="treasureDevSStarsPro" type="string"   size="64"                desc="组件宝物小星升星进度, 1#2#3..." />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////魔法行会进度养成表格///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TALENTTYPE">
+    <macro name="TYPE1"       value="62" desc="水系"/>
+    <macro name="TYPE2"       value="64" desc="土系"/>
+    <macro name="TYPE3"       value="63" desc="气系"/>
+    <macro name="TYPE4"       value="61" desc="火系"/>
+    <macro name="TYPE5"       value="65" desc="元素"/>
+    <macro name="TYPE6"       value="66" desc="混乱"/>
+  </macrosgroup>
+
+  <struct  name="talent"    filter="1"      version="1"     desc="魔法行会进度养成表格">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="Sequence"        type="int"                                    desc="(可填)用于关联同一批日志" />
+    <entry  name="talentType"      type="int"                                    desc="天赋类型,参见TALENTTYPE" />
+    <entry  name="talentLevel"     type="string"   size="64"                     desc="天赋等级,共10个数由#隔开,按游戏中从左到右从上到下顺序,-1表示未开启" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      ///////公会地图战斗参与流水日志///////////////////////////////
+      /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE">
+    <macro name="PVESINGLE"  value="my"          desc="个人pve"/>
+    <macro name="PVEGUILD"   value="guild"       desc="公会pve"/>
+    <macro name="PVECOMMON"  value="common"      desc="全图pve"/>
+    <macro name="PVP"        value="pvp"         desc="pvp"/>
+    <macro name="BACKCITY"   value="backCity"    desc="回城"/>
+    <macro name="ROBMINE"    value="robMine"     desc="矿点抢夺"/>
+    <macro name="COLLECT"    value="collect"     desc="采集"/>
+    <macro name="EXCHANGE"   value="exchange"    desc="兑换"/>
+    <macro name="OCCUPY"     value="occupy"      desc="占领公共建筑"/>
+    <macro name="CANCLEOCC"  value="cancleOcc"   desc="取消占领公共建筑"/>
+    <macro name="PICK"       value="pick"        desc="捡装备"/>
+    <macro name="ACMINE"     value="acMine"      desc="激活金矿"/>
+    <macro name="OTHERGUILDPORTAL" value="otherGuildPortal" desc="传送至其他联盟"/>
+    <macro name="DUNGEONPORTAL"  value="dungeonPortal"  desc="传送至地下城"/>
+    <macro name="ACTENT"     value="acTent"      desc="激活联盟帐篷"/>
+    <macro name="ACTOWER"    value="acTower"     desc="激活方尖塔"/>
+    <macro name="OCCCITY"    value="occCity"     desc="占领城池"/>
+    <macro name="LEAVEOCCCITY" value="leaveOccCity" desc="离开占领城池"/>
+    <macro name="SINGLEPORTAL" value="singlePortal" desc="单项传送门"/>
+    <macro name="MOVE"    value="move" desc="地图移动"/>
+    <macro name="MAPMARK"    value="mapMark" desc="地图标记"/>
+    <macro name="SPHINX"    value="sphinx" desc="答题"/>
+    
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+  
+  <macrosgroup name="MONSTERID" desc="不要随意修改，否则影响统计结果" >
+    <macro name="monster_1"   value="1" desc="BOSS"/>
+    <macro name="monster_2"   value="2" desc="拦路怪"/>
+    <macro name="monster_3"   value="3" desc="普通怪"/>
+  </macrosgroup>
+  
+  <macrosgroup name="PVPSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="1"   value="1" desc="地上"/>
+    <macro name="2"   value="2" desc="地下"/>
+  </macrosgroup>
+  
+  <macrosgroup name="ROGUETYPE" desc="不要随意修改，否则影响统计结果" >
+    <macro name="1"   value="1" desc="打听"/>
+    <macro name="2"   value="2" desc="精灵访问"/>
+    <macro name="3"   value="3" desc="获得宝物"/>
+  </macrosgroup>
+  
+  <macrosgroup name="MARKTYPE" desc="不要随意修改，否则影响统计结果" >
+    <macro name="1"   value="1" desc="标记"/>
+    <macro name="2"   value="2" desc="取消标记"/>
+  </macrosgroup>
+  
+  <macrosgroup name="SPHINXANWSER" desc="不要随意修改，否则影响统计结果" >
+    <macro name="wrong"   value="0" desc="错"/>
+    <macro name="right"   value="1" desc="正确"/>
+  </macrosgroup>
+
+  <struct  name="guildMapBattle"    filter="1"      version="1"    desc="公会地图战斗参与流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="type"          type="string"    size="32"                       desc="参考TYPE类型" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"          type="int"                   defaultvalue="0"    desc="战斗进行的时长(秒)" />
+    <entry  name="guildId"       type="int"                                       desc="玩家公会ID" />
+    <entry  name="rivalDead"     type="int"                                       desc="对手是否死亡，1是0否" />
+    <entry  name="hurt"          type="int"                                       desc="公会战斗造成伤害(范围为0~100)" />
+    <entry  name="monsterId"     type="int"                                       desc="怪物类型(仅对公会pve有效) 参考MONSTERID" />
+    <entry  name="pvpStatus"     type="int"                                       desc="地下城或地上 参考PVPSTATUS" />
+    <entry  name="occTime"       type="int"                                       desc="地下城占领时长(仅对离开占领城池时有效)" />
+    <entry  name="rougueType"    type="int"                                       desc="盗贼小屋操作 参考ROGUETYPE(仅对盗贼小屋类型有效)" />
+    <entry  name="markType"      type="int"                                       desc="地图标记类型 参考MARKTYPE(仅对地图标记类型有效)" />
+    <entry  name="SPhinxAnwser"  type="int"                                       desc="答题结果 参考SPHINXANWSER(仅对答题类型有效)" />
+    <entry  name="SPhinxPoint"   type="int"                                       desc="答题个人积分" />
+    <entry  name="SPhinxGuildPoint"   type="int"                                  desc="答题联盟积分" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////idip敏感指令日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="IDIPRequest"    filter="1"      version="1"    desc="IDIP敏感指令日志">
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vopenid"       type="int"                  defaultvalue="0"     desc="openid号"/>
+    <entry  name="iAreaID"       type="int"                                       desc="大区号"/>
+    <entry  name="item_id"       type="int"                                       desc="道具id（如为资源则为0）" />
+    <entry  name="item_num"      type="int"                                       desc="资源/道具数量" />
+    <entry  name="serialnum"     type="string"    size="32"                       desc="流水号" />
+    <entry  name="source_id"     type="int"                                       desc="渠道号" />
+    <entry  name="Cmd"           type="string"    size="32"                       desc="命令字" />
+    <entry  name="type"          type="string"    size="32"                       desc="修改类型,tool为道具，其余为资源" />
+    <entry  name="partition"     type="int"                                       desc="区服" />
+  </struct>
+
+  <!--//////////////////////////////////////////////
+     ///////船坞日志///////////////////////////////
+     /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE">
+    <macro name="TYPE_1"      value="1" 		desc="开始任务"/>
+    <macro name="TYPE_2"      value="2" 		desc="完成任务领取奖励"/>
+    <macro name="TYPE_3"      value="3" 	    desc="掠夺"/>
+    <macro name="TYPE_4"      value="4" 		desc="帮助"/>
+    <macro name="TYPE_5"      value="5" 		desc="答谢"/>
+    <macro name="TYPE_6"      value="6" 		desc="钻石领取奖励"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+    <macro name="TIE"         value="2" desc="平局"/>
+  </macrosgroup>
+
+  <struct  name="dock"    filter="1"      version="1"    desc="">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="stageId"       type="string"    size="64"                       desc="相关ID(目前没有使用)" />
+    <entry  name="type"          type="int"                                       desc="参考TYPE类型" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态(仅对类型3有意义)" />
+    <entry  name="time"			 type="int"                   defaultvalue="0"    desc="战斗进行的时长(秒)(仅对类型3有意义)" />
+    <entry  name="star"			 type="int"                   defaultvalue="0"    desc="任务星级（仅对类型1 2 6有意义）" />
+    <entry  name="addition"      type="int"                   defaultvalue="0"    desc="奖励加成（仅对类型1 2 6有意义）" />
+    <entry  name="taskTime"      type="int"                   defaultvalue="0"    desc="任务时长（仅对类型1 2 6有意义）" />
+    <entry  name="doubleNum"     type="int"                   defaultvalue="0"    desc="翻倍次数（仅对类型2 6有意义）" />
+    <entry  name="cityId"        type="int"                   defaultvalue="0"    desc="岛屿id" />
+  </struct>
+
+  <!--//////////////////////////////////////////////
+   ///////兵团持有与出战表格快照///////////////////////////////
+   /////////////////////////////////////////////////-->
+  <macrosgroup name="teamType">
+    <macro name="TYPE1"       value="1" desc="输出"/>
+    <macro name="TYPE2"       value="2" desc="防御"/>
+    <macro name="TYPE3"       value="3" desc="突击"/>
+    <macro name="TYPE4"       value="4" desc="远程"/>
+    <macro name="TYPE5"       value="5" desc="魔法"/>
+  </macrosgroup>
+
+  <struct  name="teamSnap"  filter="1"  version="1"   desc="兵团持有与出战表格">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="teamId"         type="int"                                    desc="兵团ID" />
+    <entry  name="teamType"       type="int"                                    desc="兵团类型, 参考teamType类型" />
+    <entry  name="teamStage"      type="int"                                    desc="兵团阶" />
+    <entry  name="teamStar"       type="int"                                    desc="兵团星级" />
+    <entry  name="teamScore"      type="bigint"                                 desc="兵团战力" />
+    <entry  name="teamLevel"      type="int"                                    desc="兵团等级" />
+    <entry  name="teamBoost1"     type="int"                                    desc="兵团天赋1等级" />
+    <entry  name="teamBoost2"     type="int"                                    desc="兵团天赋2等级" />
+    <entry  name="teamBoost3"     type="int"                                    desc="兵团天赋3等级" />
+    <entry  name="teamBoost4"     type="int"                                    desc="兵团天赋4等级" />
+    <entry  name="teamBoost5"     type="int"                                    desc="兵团技巧培养5等级" />
+    <entry  name="teamBoost6"     type="int"                                    desc="兵团技巧培养6等级" />
+    <entry  name="teamBoost7"     type="int"                                    desc="兵团技巧培养7等级" />
+    <entry  name="teamBoost8"     type="int"                                    desc="兵团技巧培养8等级" />
+    <entry  name="teamBoost9"     type="int"                                    desc="兵团技巧培养9等级" />
+    <entry  name="skillLevel1"    type="int"                                    desc="兵团技能1等级" />
+    <entry  name="skillLevel2"    type="int"                                    desc="兵团技能2等级" />
+    <entry  name="skillLevel3"    type="int"                                    desc="兵团技能3等级" />
+    <entry  name="skillLevel4"    type="int"                                    desc="兵团技能4等级" />
+    <entry  name="inFormation1"   type="int"                                    desc="是否在默认阵型，1是0否" />
+    <entry  name="userLevel"      type="int"                 defaultvalue="0"   desc="玩家等级" />
+    <entry  name="potential1"     type="int"                                    desc="兵团潜能1等级" />
+    <entry  name="potential2"     type="int"                                    desc="兵团潜能2等级" />
+    <entry  name="potential3"     type="int"                                    desc="兵团潜能3等级" />
+    <entry  name="talentScore"    type="int"                                    desc="天赋战力" />
+    <entry  name="awakingLevel"   type="int"                                    desc="觉醒等级" />
+    <entry  name="awakingTree1"   type="int"                                    desc="觉醒天赋树1" />
+    <entry  name="awakingTree2"   type="int"                                    desc="觉醒天赋树2" />
+    <entry  name="awakingTree3"   type="int"                                    desc="觉醒天赋树3" />
+  </struct>
+
+  <!--//////////////////////////////////////////////
+    ///////英雄持有与出战表格快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="heroStatus">
+    <macro name="ON"        value="1" desc="切换到上阵状态"/>
+    <macro name="OFF"       value="0" desc="切换到未上阵状态"/>
+  </macrosgroup>
+
+  <struct  name="heroSnap" filter="1"  version="1" desc="英雄持有与出战表格">
+    <entry  name="GameSvrId"          type="string"    size="32"                              desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"  index="1"  defaultvalue="0"            desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"    size="32"                              desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                  defaultvalue="0"            desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"       index="1"  defaultvalue="0"            desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"    size="64"                              desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"    size="64"                              desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                              desc="vip等级" />
+    <entry  name="heroId"             type="int"                                              desc="(必填)英雄ID" />
+    <entry  name="heroStar"           type="int"                                              desc="(必填)英雄星级" />
+    <entry  name="spellLvl1Level"     type="int"                  defaultvalue="NULL"         desc="法术1等级" />
+    <entry  name="spellLvl2Level"     type="int"                  defaultvalue="NULL"         desc="法术2等级" />
+    <entry  name="spellLvl3Level"     type="int"                  defaultvalue="NULL"         desc="法术3等级" />
+    <entry  name="spellLvl4Level"     type="int"                  defaultvalue="NULL"         desc="法术4等级" />
+    <entry  name="masteryLvl1Id"      type="int"                  defaultvalue="NULL"         desc="专精1Id" />
+    <entry  name="masteryLvl2Id"      type="int"                  defaultvalue="NULL"         desc="专精2Id" />
+    <entry  name="masteryLvl3Id"      type="int"                  defaultvalue="NULL"         desc="专精3Id" />
+    <entry  name="masteryLvl4Id"      type="int"                  defaultvalue="NULL"         desc="专精4Id" />
+    <entry  name="heroScore"          type="bigint"                                           desc="英雄战力" />
+    <entry  name="inFormation1"       type="int"                                              desc="是否在默认阵型，1是0否" />
+    <entry  name="skin"               type="int"                                              desc="英雄使用皮肤" />
+    <entry  name="allSkins"           type="string"   size="64"                               desc="英雄所有皮肤" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+  ///////阵型表格快照///////////////////////////////
+  /////////////////////////////////////////////////-->
+  <macrosgroup name="formationID">
+    <macro name="formation1"         value="1"      desc="系统默认编组" />
+    <macro name="formation2"         value="2"      desc="竞技场攻击编组" />
+    <macro name="formation3"         value="3"      desc="矮人木屋编组" />
+    <macro name="formation4"         value="4"      desc="阴森墓穴编组" />
+    <macro name="formation5"         value="5"      desc="龙之国编组" />
+    <macro name="formation6"         value="6"      desc="远征编组" />
+    <macro name="formation7"         value="7"      desc="重置远征默认编组" />
+    <macro name="formation8"         value="8"      desc="积分联赛编组" />
+    <macro name="formation9"         value="9"      desc="联盟探索攻击编组" />
+    <macro name="formation10"        value="10"     desc="龙之国龙2编组" />
+    <macro name="formation11"        value="11"     desc="龙之国龙3编组" />
+    <macro name="formation12"        value="12"     desc="云中城1编组" />
+    <macro name="formation13"        value="13"     desc="云中城2编组" />
+    <macro name="formation14"        value="14"     desc="训练场编组" />
+    <macro name="formation15"        value="15"     desc="mf进攻编组" />
+    <macro name="formation16"        value="16"     desc="大富翁战斗编组" />
+    <macro name="formation17"        value="17"     desc="城池战编组1" />
+    <macro name="formation18"        value="18"     desc="城池战编组2" />
+    <macro name="formation19"        value="19"     desc="城池战编组3" />
+    <macro name="formation20"        value="20"     desc="城池战编组4" />
+    <macro name="formation21"        value="21"     desc="英雄交锋编组" />
+    <macro name="formation22"        value="22"     desc="争霸赛编组1" />
+    <macro name="formation23"        value="23"     desc="争霸赛编组2" />
+    <macro name="formation24"        value="24"     desc="争霸赛编组3" />
+    <macro name="formation101"       value="101"    desc="竞技场防守编组" />
+    <macro name="formation102"       value="102"    desc="联盟探索防守编组" />
+    <macro name="formation103"       value="103"    desc="航海打野编组" />
+    <macro name="formation104"       value="104"    desc="积分联赛防守编组" />
+  </macrosgroup>
+
+  <struct  name="formationSnap"  filter="1"  version="1"   desc="兵团持有与出战表格">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="formationId"    type="int"                                    desc="阵型ID, 参考formationID类型" />
+    <entry  name="team1"          type="int"                                    desc="兵团1ID" />
+    <entry  name="team2"          type="int"                                    desc="兵团2ID" />
+    <entry  name="team3"          type="int"                                    desc="兵团3ID" />
+    <entry  name="team4"          type="int"                                    desc="兵团4ID" />
+    <entry  name="team5"          type="int"                                    desc="兵团5ID" />
+    <entry  name="team6"          type="int"                                    desc="兵团6ID" />
+    <entry  name="team7"          type="int"                                    desc="兵团7ID" />
+    <entry  name="team8"          type="int"                                    desc="兵团8ID" />
+    <entry  name="heroId"         type="int"                                    desc="英雄ID" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////图鉴表格流水///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="pokeType">
+    <macro name="TYPE_1"    value="1"    desc="平原"/>
+    <macro name="TYPE_2"    value="2"    desc="突击"/>
+    <macro name="TYPE_3"    value="3"    desc="森林"/>
+    <macro name="TYPE_4"    value="4"    desc="射手"/>
+    <macro name="TYPE_5"    value="5"    desc="据点"/>
+    <macro name="TYPE_6"    value="6"    desc="防御"/>
+    <macro name="TYPE_7"    value="7"    desc="墓园"/>
+    <macro name="TYPE_8"    value="8"    desc="魔法"/>
+    <macro name="TYPE_9"    value="9"    desc="地狱"/>
+    <macro name="TYPE_10"   value="10"   desc="输出"/>
+    <macro name="TYPE_11"   value="11"   desc="塔楼"/>
+    <macro name="TYPE_12"   value="12"   desc="元素"/>
+  </macrosgroup>
+
+  <struct  name="pokedex" filter="1"  version="1" desc="英雄持有与出战表格">
+    <entry  name="GameSvrId"          type="string"    size="32"                              desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"  index="1"  defaultvalue="0"            desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"    size="32"                              desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                  defaultvalue="0"            desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"       index="1"  defaultvalue="0"            desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"    size="64"                              desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"    size="64"                              desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                              desc="vip等级" />
+    <entry  name="Sequence"           type="int"                                              desc="(可填)用于关联同一批日志" />
+    <entry  name="pokeType"           type="int"                                              desc="图鉴类型,参考pokeType" />
+    <entry  name="level"              type="int"                                              desc="图鉴等级" />
+    <entry  name="score"              type="int"                                              desc="图鉴评分" />
+    <entry  name="poke1"              type="int"                                              desc="图鉴1Id,0为空,-1为未开启" />
+    <entry  name="poke2"              type="int"                                              desc="图鉴2Id,0为空,-1为未开启" />
+    <entry  name="poke3"              type="int"                                              desc="图鉴3Id,0为空,-1为未开启" />
+    <entry  name="poke4"              type="int"                                              desc="图鉴4Id,0为空,-1为未开启" />
+    <entry  name="poke5"              type="int"                                              desc="图鉴5Id,0为空,-1为未开启" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////训练所系统参与流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE">
+    <macro name="PRIMARY"       value="1" desc="初级训练所"/>
+    <macro name="MIDDLE"        value="2" desc="中级训练所"/>
+    <macro name="SENIOR"        value="3" desc="高级训练所"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="training"    filter="1"      version="1"    desc="训练所系统参与流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="stageId"       type="int"                                       desc="ID" />
+    <entry  name="type"          type="int"                                       desc="参考TYPE类型" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"			 type="int"					  defaultvalue="0"    desc="战斗进行的时长(秒)" />
+    <entry  name="score"	     type="int"					  defaultvalue="0"    desc="本场战斗得分(仅高级有得分)" />
+    <entry  name="scoreSum"	     type="int"					  defaultvalue="0"    desc="训练所总评分" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+    ///////云中城流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="cloudycity"     filter="1"      version="1"     desc="云中城流水日志">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="StageId"       type="int"                                       desc="关卡ID" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"			 type="int"					  defaultvalue="0"    desc="战斗进行的时长(秒,仅非sweep时有效)" />
+    <entry  name="subStageId"	 type="int"		              defaultvalue="0"    desc="小关卡ID(仅非sweep时有效)" />
+    <entry  name="sweep"	     type="int"					  defaultvalue="0"    desc="是否开启扫荡:0否其他为次数" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////////////
+      //////////公会行为流水(有公会非战斗/非框架行为时触发日志)//////
+      //////////////////////////////////////////////////////-->
+  <macrosgroup name="iACTTYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1" desc="领取公会红包"/>
+    <macro name="TYPE_2"      value="2" desc="领取玩家红包"/>
+    <macro name="TYPE_3"      value="3" desc="发送红包"/>
+    <macro name="TYPE_4"      value="4" desc="射箭"/>
+    <macro name="TYPE_5"      value="5" desc="公会科技捐献"/>
+  </macrosgroup>
+
+  <macrosgroup name="moneyType" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="gold"         desc="金币"/>
+    <macro name="TYPE_2"      value="gem"          desc="钻石"/>
+    <macro name="TYPE_3"      value="treasureCoin" desc="进阶石"/>
+  </macrosgroup>
+
+  <struct  name="GuildActionFlow"     version="1"     desc="(可选)公会流水">
+    <entry name="GameSvrId"      type="string"    size="32"                    desc="登录的游戏服务器编号" />
+    <entry name="dtEventTime"    type="datetime"  index="1"  defaultvalue="0"  desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry name="vGameAppid"     type="string"    size="32"                    desc="(必填)游戏APPID" />
+    <entry name="PlatID"         type="int"                  defaultvalue="0"  desc="(必填)ios 0 /android 1"/>
+    <entry name="iZoneAreaID"    type="int"       index="1"  defaultvalue="0"  desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid"        type="string"    size="64"                    desc="用户OPENID号" />
+    <entry name="vRoleId"        type="string"    size="64"                    desc="角色ID" />
+    <entry name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry name="iGuildID"       type="int"                                    desc="公会ID" />
+    <entry name="iActType"       type="int"                                    desc="操作类型,参见iACTTYPE" />
+    <entry name="moneyType"      type="string"    size="64"                    desc="涉及的货币/道具类型,参见moneyType" />
+    <entry name="amount"         type="int"                                    desc="涉及的货币/道具数量" />
+    <entry name="tech"           type="int"                                    desc="捐献的科技类型（仅对iActType==5有效）" />
+    <entry name="donateType"     type="int"                                    desc="捐献的类型:1为黄金捐献，2为钻石捐献，3为至尊捐献（仅对iActType==5有效）" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////
+      ///////活跃度分布快照///////////////////////////////
+      /////////////////////////////////////////////////-->
+  <struct  name="activeSnap" filter="1"  version="1" desc="活跃度分布快照">
+    <entry  name="GameSvrId"          type="string"    size="32"                              desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"  index="1"  defaultvalue="0"            desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"    size="32"                              desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                  defaultvalue="0"            desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"       index="1"  defaultvalue="0"            desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"    size="64"                              desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"    size="64"                              desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                              desc="vip等级" />
+    <entry  name="userLevel"          type="int"                                              desc="用户等级" />
+    <entry  name="task_9601"              type="int"                  defaultvalue="0"        desc="任务9601是否完成, 1是0否-1未开启" />
+    <entry  name="task_9603"              type="int"                  defaultvalue="0"        desc="任务9603是否完成, 1是0否-1未开启" />
+    <entry  name="task_9605"              type="int"                  defaultvalue="0"        desc="任务9605是否完成, 1是0否-1未开启" />
+    <entry  name="task_9606"              type="int"                  defaultvalue="0"        desc="任务9606是否完成, 1是0否-1未开启" />
+    <entry  name="task_9607"              type="int"                  defaultvalue="0"        desc="任务9607是否完成, 1是0否-1未开启" />
+    <entry  name="task_9608"              type="int"                  defaultvalue="0"        desc="任务9608是否完成, 1是0否-1未开启" />
+    <entry  name="task_9609"              type="int"                  defaultvalue="0"        desc="任务9609是否完成, 1是0否-1未开启" />
+    <entry  name="task_9610"              type="int"                  defaultvalue="0"        desc="任务9610是否完成, 1是0否-1未开启" />
+    <entry  name="task_9611"              type="int"                  defaultvalue="0"        desc="任务9611是否完成, 1是0否-1未开启" />
+    <entry  name="task_9612"              type="int"                  defaultvalue="0"        desc="任务9612是否完成, 1是0否-1未开启" />
+    <entry  name="task_9613"              type="int"                  defaultvalue="0"        desc="任务9613是否完成, 1是0否-1未开启" />
+    <entry  name="task_9621"              type="int"                  defaultvalue="0"        desc="任务9621是否完成, 1是0否-1未开启" />
+    <entry  name="task_9622"              type="int"                  defaultvalue="0"        desc="任务9622是否完成, 1是0否-1未开启" />
+    <entry  name="task_9623"              type="int"                  defaultvalue="0"        desc="任务9623是否完成, 1是0否-1未开启" />
+    <entry  name="task_9624"              type="int"                  defaultvalue="0"        desc="任务9624是否完成, 1是0否-1未开启" />
+    <entry  name="task_9625"              type="int"                  defaultvalue="0"        desc="任务9625是否完成, 1是0否-1未开启" />
+    <entry  name="task_9626"              type="int"                  defaultvalue="0"        desc="任务9626是否完成, 1是0否-1未开启" />
+    <entry  name="task_9627"              type="int"                  defaultvalue="0"        desc="任务9627是否完成, 1是0否-1未开启" />
+    <entry  name="task_9628"              type="int"                  defaultvalue="0"        desc="任务9628是否完成, 1是0否-1未开启" />
+  </struct>
+
+
+  <!--//////////////////////////////////////////////////////
+      //////////分享行为流水//////////////////////////////////
+      //////////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1"   desc="英雄分享"/>
+    <macro name="TYPE_2"      value="2"   desc="兵团分享"/>
+    <macro name="TYPE_3"      value="3"   desc="宝物分享"/>
+    <macro name="TYPE_4"      value="4"   desc="积分联赛分享"/>
+    <macro name="TYPE_5"      value="5"   desc="积分联赛胜利分享"/>
+    <macro name="TYPE_6"      value="6"   desc="竞技场分享"/>
+    <macro name="TYPE_7"      value="7"   desc="云中城最速通关排行分享"/>
+    <macro name="TYPE_8"      value="8"   desc="云中城最低战力排行分享"/>
+    <macro name="TYPE_9"      value="9"   desc="玩家详情分享"/>
+    <macro name="TYPE_10"     value="10"  desc="英雄交锋分享"/>
+    <macro name="TYPE_11"     value="11"  desc="竞技场胜利分享"/>
+    <macro name="TYPE_12"     value="12"  desc="巢穴分享"/>
+    <macro name="TYPE_13"     value="13"  desc="训练场分享"/>
+    <macro name="TYPE_999"    value="999" desc="分享活动"/>
+  </macrosgroup>
+
+  <macrosgroup name="SHARETYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1" desc="朋友圈/QQ空间分享"/>
+    <macro name="TYPE_2"      value="2" desc="好友分享"/>
+  </macrosgroup>
+
+  <struct  name="shareActionFlow"     version="1"     desc="分享行为流水">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="type"          type="int"                                       desc="操作类型,参见TYPE" />
+    <entry  name="shareType"     type="int"                                       desc="分享类型,参见SHARETYPE" />
+    <entry  name="content"       type="int"                                       desc="分享内容" />
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+      //////////英雄传记解锁流水//////////////////////////////////
+      //////////////////////////////////////////////////////-->
+  <struct  name="heroBioFlow"     version="1"     desc="英雄传记解锁流水">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="heroId"        type="int"                                       desc="英雄id" />
+    <entry  name="rank"          type="int"                                       desc="传记id" />
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+      //////////英雄交锋单场流水//////////////////////////////////
+      //////////////////////////////////////////////////////-->
+  <struct  name="heroDuelFlow"     version="1"     desc="英雄交锋单场流水">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="wins"          type="int"                                       desc="本场胜利数量" />
+    <entry  name="loses"         type="int"                                       desc="本场失败数量" />
+    <entry  name="heros"         type="string"    size="128"                      desc="本场选取英雄，共2个，用#隔开" />
+    <entry  name="teams"         type="string"    size="128"                      desc="本场选取兵团，共16个，用#隔开" />
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+      //////////英雄交锋单局流水//////////////////////////////////
+      //////////////////////////////////////////////////////-->
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="heroDuelBattle"     version="1"     desc="英雄交锋单局流水">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="time"          type="int"                                       desc="持续时长" />
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+     //////////平台能力排行///////////////////////////////////
+     //////////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1"     desc="副本总星数"/>
+    <macro name="TYPE_2"      value="2"     desc="兵团总数"/>
+    <macro name="TYPE_3"      value="3"     desc="玩家战力"/>
+  </macrosgroup>
+
+  <struct  name="platFormAbility"     version="1"     desc="平台能力排行">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="type"          type="int"                                       desc="统计类型,参见TYPE" />
+    <entry  name="num1"          type="int"                                       desc="统计值1" />
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+  //////////公会快照///////////////////////////////////
+  //////////////////////////////////////////////////////-->
+   <struct  name="guildSnap"     version="1"     desc="公会快照">
+     <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+     <entry  name="dtEventTime"        type="datetime"                                      desc="(必填)格式 YYYY-MM-DD HH:MM:SS" />
+     <entry  name="vGameAppid"         type="string"        size="32"                       desc="(必填)游戏APPID" />
+     <entry  name="PlatID"             type="int"                       defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+     <entry  name="iZoneAreaID"        type="int"           index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+     <entry  name="guildId"            type="int"           index="1"   defaultvalue="0"    desc="(必填)联盟Id"/>
+     <entry  name="memberNum"          type="int"           index="1"   defaultvalue="0"    desc="(必填)联盟人数"/>
+     <entry  name="level"              type="int"           index="1"   defaultvalue="0"    desc="(必填)联盟等级"/>
+     <entry  name="exp"                type="int"           index="1"   defaultvalue="0"    desc="(必填)联盟经验"/>
+     <entry  name="hadGroup"           type="int"           index="1"   defaultvalue="0"    desc="(必填)联盟是否建群，1是0否"/>
+     <entry  name="techLevel"          type="string"        size="64"                       desc="(必填)联盟科技等级，以#连接，没有任何捐献或未开启时为-1"/>
+     <entry  name="techExp"            type="string"        size="64"                       desc="(必填)联盟科技经验，以#连接，没有任何捐献或未开启时为-1"/>
+   </struct>
+
+
+    <!--//////////////////////////////////////////////////////
+       //////////天赋养成流水//////////////////////////////////
+       //////////////////////////////////////////////////////-->
+    <struct  name="teamTalentFlow"     version="1"     desc="天赋养成流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+        <entry  name="level"         type="int"                                       desc="用户等级" />
+        <entry  name="teamId"        type="int"                                       desc="兵团id" />
+        <entry  name="talentScore"   type="int"                                       desc="天赋战力" />
+        <entry  name="trainType"     type="int"                                       desc="培养类型:1初级2中级3高级" />
+        <entry  name="num"           type="int"                                       desc="培养次数" />
+    </struct>
+
+    <!--//////////////////////////////////////////////////////
+       //////////领主手册流水//////////////////////////////////
+       //////////////////////////////////////////////////////-->
+    <struct  name="handbookFlow"     version="1"     desc="领主手册流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+        <entry  name="level"         type="int"                                       desc="用户等级" />
+        <entry  name="bookId"        type="int"                                       desc="手册Id" />
+    </struct>
+
+    <!--//////////////////////////////////////////////////////
+       //////////宝物分解流水//////////////////////////////////
+       //////////////////////////////////////////////////////-->
+    <struct  name="treasureDismantleFlow"     version="1"     desc="宝物分解流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+        <entry  name="level"         type="int"                                       desc="用户等级" />
+        <entry  name="comId"         type="int"                                       desc="宝物组件Id" />
+        <entry  name="comNum"        type="int"                                       desc="宝物组件数量" />
+    </struct>
+
+    <!--//////////////////////////////////////////////////////
+     //////////玩法场景进出流水///////////////////////////////////
+     //////////////////////////////////////////////////////-->
+    <macrosgroup name="TYPE" desc="不要随意修改，否则影响统计结果">
+    <macro name="TYPE_1"      value="1"     desc="场景进入"/>
+    <macro name="TYPE_2"      value="2"     desc="玩家登出"/>
+    <macro name="TYPE_3"      value="3"     desc="玩家登入"/>
+    <macro name="TYPE_4"      value="4"     desc="场景退出"/>
+    </macrosgroup>
+    
+    <macrosgroup name="ACTION" desc="不要随意修改，否则影响统计结果">
+    <macro name="ACTION_1"      value="1"     desc="联盟地图"/>
+    </macrosgroup>
+
+    <struct  name="sceneFlow"     version="1"     desc="玩法场景进出流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+        <entry  name="level"         type="int"                                       desc="用户等级" />
+        <entry  name="type"          type="int"                                       desc="操作类型 参见TYPE" />
+        <entry  name="action"        type="int"                                       desc="玩法类型 参见ACTION" />
+    </struct>
+    
+    
+    <!--//////////////////////////////////////////////
+    ///////争霸赛玩法流水日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="TYPE">
+    <macro name="BATTLEGROUP"  value="1" desc="分组赛战斗"/>
+    <macro name="BATTLEPRO"    value="2" desc="晋级赛战斗"/>
+    <macro name="STAKE"        value="3" desc="押注"/>
+    <macro name="WORSHIP"      value="4" desc="冠军膜拜"/>
+    <macro name="FORMATION"    value="5" desc="布阵"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="STATUS_1"     value="1" desc="平局"/>
+    <macro name="STATUS_2"     value="2" desc="胜利"/>
+    <macro name="STATUS_3"     value="3" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="godWarFlow"    filter="1"      version="1"    desc="争霸赛玩法流水">
+    <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"   type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"        type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"   type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"      type="int"                                       desc="vip等级" />
+    <entry  name="level"         type="int"                                       desc="用户等级" />
+    <entry  name="type"          type="int"                                       desc="操作类型 参考TYPE类型" />
+    <entry  name="batchId"       type="bigint"                                    desc="争霸赛批次" />
+    <entry  name="season"        type="int"                                       desc="争霸赛赛季" />
+    <entry  name="battle"        type="int"                                       desc="争霸赛场次(仅对战斗有效)" />
+    <entry  name="round"         type="int"                                       desc="争霸赛回合(仅对战斗有效)" />
+    <entry  name="groupId"       type="int"                                       desc="小组赛小组id(仅对小组赛有效)"/>
+    <entry  name="top"           type="int"                                       desc="几强争夺(仅对晋级赛、押注有效)"/>
+    <entry  name="rank"          type="int"                                       desc="膜拜名次(仅对膜拜有效)"/>
+    <entry  name="status"        type="int"                                       desc="参考ATKSTATUS状态(仅对战斗有效)" />
+    <entry  name="time"          type="int"                   defaultvalue="0"    desc="战斗进行的时长(秒)(仅对战斗有效)" />
+    <entry  name="formationId"   type="int"                   defaultvalue="0"    desc="编组Id(仅对布阵类型有效)" />
+  </struct>
+  
+  <!--//////////////////////////////////////////////
+    ///////争霸赛战后编组日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="STATUS">
+    <macro name="STATUS_1"  value="1" desc="小组赛"/>
+    <macro name="STATUS_8"  value="8" desc="8强"/>
+    <macro name="STATUS_4"  value="4" desc="半决赛"/>
+    <macro name="STATUS_2"  value="2" desc="决赛"/>
+  </macrosgroup>
+
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+    <macro name="TIE"         value="2" desc="平局"/>
+  </macrosgroup>
+  
+  <struct  name="godWarformationsFlow"  filter="1"  version="1"   desc="争霸赛阵型">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="formationId"    type="int"                                    desc="阵型ID, 参考formationID类型" />
+    <entry  name="team1"          type="int"                                    desc="兵团1ID" />
+    <entry  name="team2"          type="int"                                    desc="兵团2ID" />
+    <entry  name="team3"          type="int"                                    desc="兵团3ID" />
+    <entry  name="team4"          type="int"                                    desc="兵团4ID" />
+    <entry  name="team5"          type="int"                                    desc="兵团5ID" />
+    <entry  name="team6"          type="int"                                    desc="兵团6ID" />
+    <entry  name="team7"          type="int"                                    desc="兵团7ID" />
+    <entry  name="team8"          type="int"                                    desc="兵团8ID" />
+    <entry  name="heroId"         type="int"                                    desc="英雄ID" />
+    <entry  name="status"         type="int"                                    desc="争霸赛状态 参考STATUS状态" />
+    <entry  name="atkStatus"      type="int"                                    desc="战斗结果参考ATKSTATUS状态" />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////英雄交锋匹配日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="STATUS">
+    <macro name="STATUS_1"  value="1" desc="匹配玩家"/>
+    <macro name="STATUS_2"  value="2" desc="匹配AI"/>
+    <macro name="STATUS_3"  value="3" desc="取消匹配"/>
+    <macro name="STATUS_4"  value="4" desc="匹配超时"/>
+    <macro name="STATUS_5"  value="5" desc="对手取消重新匹配"/>
+  </macrosgroup>
+  
+  <struct  name="heroDuelMatchFlow"  filter="1"  version="1"   desc="英雄交锋匹配流水">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="status"         type="int"                                    desc="匹配状态 参考STATUS状态" />
+    <entry  name="useTime"        type="int"                                    desc="匹配时间(仅适用于状态1和5)单位/毫秒" />
+  </struct>
+  
+      <!--//////////////////////////////////////////////
+    ///////训练场直播前10日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="trainingRankFlow"  filter="1"  version="1"   desc="训练场直播前10">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="rank"           type="int"                                    desc="排名" />
+    <entry  name="stageId"        type="int"                                    desc="关卡id" />
+  </struct>
+  
+      <!--//////////////////////////////////////////////////////
+       //////////邮件发放流水//////////////////////////////////
+       //////////////////////////////////////////////////////-->
+  <macrosgroup name="SOURCE">
+    <macro name="SOURCE0"  value="0" desc="未知"/>
+    <macro name="SOURCE1"  value="1" desc="竞技场战斗胜利"/>
+    <macro name="SOURCE2"  value="2" desc="GM"/>
+    <macro name="SOURCE3"  value="3" desc="日常活动"/>
+    <macro name="SOURCE4"  value="4" desc="七日目标"/>
+    <macro name="SOURCE5"  value="5" desc="公会"/>
+    <macro name="SOURCE6"  value="6" desc="公会许愿池"/>
+    <macro name="SOURCE7"  value="7" desc="矮人宝屋周排行奖励"/>
+    <macro name="SOURCE8"  value="8" desc="阴森墓穴周排行奖励"/>
+    <macro name="SOURCE9"  value="9" desc="每日充值补发邮件"/>
+    <macro name="SOURCE10"  value="10" desc="积分联赛补发币"/>
+    <macro name="SOURCE11"  value="11" desc="IDIP"/>
+    <macro name="SOURCE12"  value="12" desc="补发累计签到大奖"/>
+    <macro name="SOURCE13"  value="13" desc="幸运星"/>
+    <macro name="SOURCE14"  value="14" desc="大冒险补发"/>
+    <macro name="SOURCE15"  value="15" desc="工会金矿发奖"/>
+    <macro name="SOURCE16"  value="16" desc="工会占领奖励"/>
+    <macro name="SOURCE17"  value="17" desc="工会时长奖励"/>
+    <macro name="SOURCE18"  value="18" desc="单笔充值"/>
+    <macro name="SOURCE19"  value="19" desc="竞技场每日排行奖励"/>
+    <macro name="SOURCE20"  value="20" desc="积分联赛赛程排行奖励"/>
+    <macro name="SOURCE21"  value="21" desc="积分联赛赛季排行奖励"/>
+    <macro name="SOURCE22"  value="22" desc="每日小惊喜奖励"/>
+    <macro name="SOURCE23"  value="23" desc="战力排行奖励"/>
+    <macro name="SOURCE24"  value="24" desc="战力阶段奖励"/>
+    <macro name="SOURCE25"  value="25" desc="提前领取vip奖励"/>
+    <macro name="SOURCE26"  value="26" desc="补发累计签到奖励"/>
+    <macro name="SOURCE27"  value="27" desc="英雄交锋发放"/>
+    <macro name="SOURCE28"  value="28" desc="日常活动"/>
+    <macro name="SOURCE29"  value="29" desc="GVG联盟邮件"/>
+    <macro name="SOURCE30"  value="30" desc="GVG补发邮件"/>
+    <macro name="SOURCE31"  value="31" desc="联盟长"/>
+    <macro name="SOURCE32"  value="32" desc="诸神之战"/>
+    <macro name="SOURCE33"  value="33" desc="周卡"/>
+    <macro name="SOURCE34"  value="34" desc="限时兵团补发"/>
+    <macro name="SOURCE35"  value="35" desc="训练场排行"/>
+    <macro name="SOURCE36"  value="36" desc="诸神之战押注"/>
+    <macro name="SOURCE37"  value="37" desc="诸神之战参赛奖励"/>
+    <macro name="SOURCE38"  value="38" desc="贵宾邮件"/>
+    <macro name="SOURCE39"  value="39" desc="训练场第一全服奖励"/>
+    <macro name="SOURCE40"  value="40" desc="离线奖励补发"/>
+    <macro name="SOURCE41"  value="41" desc="整点狂欢奖励补发"/>
+    <macro name="SOURCE42"  value="42" desc="gvg联盟排行奖励"/>
+    <macro name="SOURCE43"  value="43" desc="gvg城池占领奖励"/>
+    <macro name="SOURCE44"  value="44" desc="gvg积分奖励补发"/>
+    <macro name="SOURCE45"  value="45" desc="大R代充邮件充值钻"/>
+    <macro name="SOURCE46"  value="46" desc="大R代充邮件免费钻"/>
+    <macro name="SOURCE47"  value="47" desc="斯芬达克个人排行奖励"/>
+    <macro name="SOURCE48"  value="48" desc="斯芬达克工会排行奖励"/>
+  </macrosgroup>
+    <struct  name="sendMail"     version="1"     desc="邮件发放流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vUsid"         type="string"    size="64"                       desc="角色usid" />
+        <entry  name="vMailId"       type="string"    size="64"                       desc="邮件id" />
+        <entry  name="iTid"          type="int"                                       desc="邮件配置id" />
+        <entry  name="vTitle"        type="string"    size="64"                       desc="邮件标题" />
+        <entry  name="vContent"      type="string"    size="64"                       desc="邮件内容" />
+        <entry  name="iSource"       type="int"                                       desc="邮件来源参考SOURCE" />
+        <entry  name="iType"         type="int"                                       desc="邮件类型 1:公告邮件 2:每日邮件" />
+        <entry  name="iEtime"        type="int"                                       desc="邮件过期时间" />
+        <entry  name="iSuccess"      type="int"                                       desc="发放状态 1:成功 0:失败" />
+    </struct>
+    
+          <!--//////////////////////////////////////////////////////
+       //////////邮件附件领取流水//////////////////////////////////
+       //////////////////////////////////////////////////////-->
+    <struct  name="getMailAtt"       version="1"     desc="邮件附件领取流水">
+        <entry  name="GameSvrId"     type="string"    size="32"                       desc="登录的游戏服务器编号" />
+        <entry  name="dtEventTime"   type="datetime"  index="1"   defaultvalue="0"    desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+        <entry  name="vGameAppid"    type="string"    size="32"                       desc="(必填)游戏APPID" />
+        <entry  name="PlatID"        type="int"                   defaultvalue="0"    desc="(必填)ios 0 /android 1"/>
+        <entry  name="iZoneAreaID"   type="int"       index="1"   defaultvalue="0"    desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+        <entry  name="vopenid"       type="string"    size="64"                       desc="用户OPENID号" />
+        <entry  name="vRoleId"       type="string"    size="64"                       desc="角色ID" />
+        <entry  name="vUsid"         type="string"    size="64"                       desc="角色usid" />
+        <entry  name="vMailId"       type="string"    size="64"                       desc="邮件id" />
+        <entry  name="iTid"          type="int"                                       desc="邮件配置id" />
+        <entry  name="vTitle"        type="string"    size="64"                       desc="邮件标题" />
+        <entry  name="vContent"      type="string"    size="64"                       desc="邮件内容" />
+        <entry  name="iSource"       type="int"                                       desc="邮件来源参考发邮件SOURCE" />
+        <entry  name="iType"         type="int"                                       desc="邮件类型 1:公告邮件 2:每日邮件" />
+        <entry  name="vAtt"          type="string"    size="64"                       desc="邮件奖励" />
+    </struct>
+    
+      <!--//////////////////////////////////////////////
+    ///////兵团获得日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="STATUS">
+    <macro name="src_1"     value="1"       desc="系统"/>
+    <macro name="src_2"     value="3303"    desc="限时兵团抽卡"/>
+    <macro name="src_3"     value="212"     desc="碎片合成"/>
+    <macro name="src_4"     value="406"     desc="第一次免费钻石抽取"/>
+    <macro name="src_5"     value="407"     desc="第一次钻石抽取"/>
+    <macro name="src_6"     value="401"     desc="钻石抽卡"/>
+    <macro name="src_7"     value="203"     desc="邮件"/>
+  </macrosgroup>
+  <struct  name="getTeamFlow"  filter="1"  version="1"   desc="兵团获得日志">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="teamId"         type="int"                                    desc="兵团ID" />
+    <entry  name="teamStar"       type="int"                                    desc="兵团星级" />
+    <entry  name="source"         type="int"                                    desc="兵团来源" />
+  </struct>
+  
+        <!--//////////////////////////////////////////////
+    ///////特权商店日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="PrivilegeFlow"  filter="1"  version="1"   desc="特权商店流水">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="buffId"         type="int"                                    desc="购买的buffId" />
+    <entry  name="itemId"         type="int"                                    desc="消耗的物品id" />
+    <entry  name="afterNum"       type="int"                                    desc="兑换后物品数量" />
+  </struct>
+  
+  <!--//////////////////////////////////////////////
+    ///////gvg事件日志 废弃废弃废弃废弃废弃废弃废弃///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="ACTION">
+    <macro name="action1"     value="1"     desc="备战捐献"/>
+    <macro name="action2"     value="2"     desc="布阵操作"/>
+    <macro name="action3"     value="3"     desc="领取捐献奖励"/>
+    <macro name="action4"     value="4"     desc="编组复活"/>
+    <macro name="action5"     value="5"     desc="领取累计积分奖励"/>
+  </macrosgroup>
+  <struct  name="gvgEventFlow"  filter="1"  version="1"   desc="GVG事件流水已废弃">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="action"         type="int"                                    desc="操作类型 " />
+    <entry  name="buffId"         type="int"                                    desc="捐献buffID 仅对捐献类型有用" />
+    <entry  name="donateNum"      type="int"                                    desc="捐献值 仅对捐献类型有用" />
+    <entry  name="boxId"          type="int"                                    desc="领取捐献的宝箱 仅对领取捐献奖励类型有用" />
+    <entry  name="formationId"    type="int"                                    desc="编组ID 仅对布阵类型有效" />
+    <entry  name="consumeNum"     type="int"                                    desc="复活消耗数量 仅对编组复活类型有效" />
+    <entry  name="rewardId"       type="int"                                    desc="积分奖励档位id 仅对领取积分奖励类型有效" />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////Gvg事件日志  废弃废弃废弃废弃废弃废弃废弃///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="ACTION">
+    <macro name="action1"     value="1"     desc="备战捐献"/>
+    <macro name="action2"     value="2"     desc="布阵操作"/>
+    <macro name="action3"     value="3"     desc="领取捐献奖励"/>
+    <macro name="action4"     value="4"     desc="编组复活"/>
+    <macro name="action5"     value="5"     desc="领取累计积分奖励"/>
+  </macrosgroup>
+  <struct  name="GvgEventFlow"  filter="1"  version="1"   desc="GVG事件流水已废弃">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="action"         type="int"                                    desc="操作类型 " />
+    <entry  name="buffId"         type="int"                                    desc="捐献buffID 仅对捐献类型有用" />
+    <entry  name="donateNum"      type="int"                                    desc="捐献值 仅对捐献类型有用" />
+    <entry  name="boxId"          type="int"                                    desc="领取捐献的宝箱 仅对领取捐献奖励类型有用" />
+    <entry  name="formationId"    type="int"                                    desc="编组ID 仅对布阵类型有效" />
+    <entry  name="consumeNum"     type="int"                                    desc="复活消耗数量 仅对编组复活类型有效" />
+    <entry  name="rewardId"       type="int"                                    desc="积分奖励档位id 仅对领取积分奖励类型有效" />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////gvg操作日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="ACTION">
+    <macro name="action1"     value="1"     desc="备战捐献"/>
+    <macro name="action2"     value="2"     desc="布阵操作"/>
+    <macro name="action3"     value="3"     desc="领取捐献奖励"/>
+    <macro name="action4"     value="4"     desc="编组复活"/>
+    <macro name="action5"     value="5"     desc="领取累计积分奖励"/>
+  </macrosgroup>
+  <struct  name="gvgActinonFlow"  filter="1"  version="1"   desc="GVG操作流水">
+    <entry  name="GameSvrId"      type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"    type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"     type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"         type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"    type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"        type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"        type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"       type="int"                                    desc="vip等级" />
+    <entry  name="level"          type="int"                                    desc="用户等级" />
+    <entry  name="action"         type="int"                                    desc="操作类型 " />
+    <entry  name="buffId"         type="int"                                    desc="捐献buffID 仅对捐献类型有用" />
+    <entry  name="donateNum"      type="int"                                    desc="捐献值 仅对捐献类型有用" />
+    <entry  name="boxId"          type="int"                                    desc="领取捐献的宝箱 仅对领取捐献奖励类型有用" />
+    <entry  name="formationId"    type="int"                                    desc="编组ID 仅对布阵类型有效" />
+    <entry  name="consumeNum"     type="int"                                    desc="复活消耗数量 仅对编组复活类型有效" />
+    <entry  name="rewardId"       type="int"                                    desc="积分奖励档位id 仅对领取积分奖励类型有效" />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////宝物快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="treasureSnap"    filter="1"      version="1"                    desc="宝物快照">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="treasureId"      type="int"                                    desc="宝物ID" />
+    <entry  name="treasureLevel"   type="int"                                    desc="宝物等级" />
+    <entry  name="treasureScore"   type="bigint"                                 desc="宝物战斗力" />
+    <entry  name="treasureDevIds"  type="string"   size="64"                     desc="组件宝物Id,id1#id2#..." />
+    <entry  name="treasureDevLvs"  type="string"   size="64"                     desc="组件宝物等级, lv1#lv2#..." />
+    <entry  name="treasureDevBStars" type="string"   size="64"                   desc="组件宝物大星星级, 1#2#3..." />
+    <entry  name="treasureDevSStars" type="string"   size="64"                   desc="组件宝物小星星级, 1#2#3..." />
+    <entry  name="treasureDevSStarsPro" type="string"   size="64"                desc="组件宝物小星升星进度, 1#2#3..." />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////图鉴快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="pokedexSnap" filter="1"  version="1" desc="图鉴快照">
+    <entry  name="GameSvrId"          type="string"    size="32"                              desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"        type="datetime"  index="1"  defaultvalue="0"            desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"         type="string"    size="32"                              desc="(必填)游戏APPID" />
+    <entry  name="PlatID"             type="int"                  defaultvalue="0"            desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"        type="int"       index="1"  defaultvalue="0"            desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"            type="string"    size="64"                              desc="用户OPENID号" />
+    <entry  name="vRoleId"            type="string"    size="64"                              desc="角色ID" />
+    <entry  name="vipLevel"           type="int"                                              desc="vip等级" />
+    <entry  name="pokeType"           type="int"                                              desc="图鉴类型,参考pokeType" />
+    <entry  name="level"              type="int"                                              desc="图鉴等级" />
+    <entry  name="score"              type="int"                                              desc="图鉴评分" />
+    <entry  name="poke1"              type="int"                                              desc="图鉴1Id,0为空,-1为未开启" />
+    <entry  name="poke2"              type="int"                                              desc="图鉴2Id,0为空,-1为未开启" />
+    <entry  name="poke3"              type="int"                                              desc="图鉴3Id,0为空,-1为未开启" />
+    <entry  name="poke4"              type="int"                                              desc="图鉴4Id,0为空,-1为未开启" />
+    <entry  name="poke5"              type="int"                                              desc="图鉴5Id,0为空,-1为未开启" />
+  </struct>
+  
+  <!--//////////////////////////////////////////////
+    ///////魔法行会快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+    <struct  name="talentSnap"    filter="1"      version="1"     desc="魔法行会进度养成表格">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="talentType"      type="int"                                    desc="天赋类型,参见TALENTTYPE" />
+    <entry  name="talentLevel"     type="string"   size="64"                     desc="天赋等级,共10个数由#隔开,按游戏中从左到右从上到下顺序,-1表示未开启" />
+  </struct>
+  
+    <!--//////////////////////////////////////////////
+    ///////宝物编组快照快照///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <struct  name="treasureFormationSnap"    filter="1"      version="1"     desc="宝物编组快照快照">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="formationId"     type="int"                                    desc="阵型id" />
+    <entry  name="skill1Id"        type="int"                                    desc="技能1ID 未装备:0" />
+    <entry  name="skill2Id"        type="int"                                    desc="技能2ID 未装备:0" />
+    <entry  name="skill3Id"        type="int"                                    desc="技能3ID 未装备:0" />
+    <entry  name="skill4Id"        type="int"                                    desc="技能4ID 未装备:0" />
+    <entry  name="skill5Id"        type="int"                                    desc="技能5ID 未装备:0" />
+    <entry  name="name"            type="string"   size="64"                     desc="编组名称" />
+  </struct>
+  
+      <!--//////////////////////////////////////////////
+    ///////射箭行为日志///////////////////////////////
+    /////////////////////////////////////////////////-->
+  <macrosgroup name="ACTION">
+    <macro name="action1"     value="1"     desc="宝箱获得"/>
+    <macro name="action2"     value="2"     desc="开宝箱"/>
+    <macro name="action3"     value="3"     desc="补给箭领取"/>
+  </macrosgroup>
+  <struct  name="arrowFlow"    filter="1"      version="1"     desc="射箭行为日志">
+    <entry  name="GameSvrId"       type="string"   size="32"                     desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime" index="1"  defaultvalue="0"   desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"   size="32"                     desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                 defaultvalue="0"   desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"      index="1"  defaultvalue="0"   desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"   size="64"                     desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"   size="64"                     desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                    desc="vip等级" />
+    <entry  name="action"          type="int"                                    desc="操作类型" />
+    <entry  name="boxIds"          type="string"   size="64"                     desc="仅对宝箱获得类型有效 宝箱类型 1#2#3" />
+    <entry  name="boxNum"          type="string"   size="64"                     desc="仅对宝箱获得类型有效 宝箱数量 1#2#3" />
+    <entry  name="monsters"        type="string"   size="64"                     desc="仅对宝箱获得类型有效 射中的怪物id 1#2#3" />
+    <entry  name="monsterNum"      type="string"   size="64"                     desc="仅对宝箱获得类型有效 射中的怪物数量 1#2#3" />
+    <entry  name="itemType"        type="string"   size="64"                     desc="仅对开宝箱有效 获得的奖励类型 #号分隔" />
+    <entry  name="itemNum"         type="string"   size="64"                     desc="仅对开宝箱有效 获得的奖励数量 1#2#3" />
+    <entry  name="lastGetTime"     type="int"                                    desc="上次补给箭领取时间"/>
+  </struct>
+
+  <struct name="element" filter="1" version="1" desc="元素位面挑战日志">
+    <entry name="GameSvrId" type="string" size="32" desc="登录的游戏服务器编号"/>
+    <entry name="dtEventTime" type="datetime" index="1" defaultvalue="0" desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry name="vGameAppid" type="string" size="32" desc="(必填)游戏APPID"/>
+    <entry name="PlatID" type="int" defaultvalue="0" desc="(必填)ios 0 /android 1"/>
+    <entry name="iZoneAreaID" type="int" index="1" defaultvalue="0" desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry name="vopenid" type="string" size="64" desc="用户OPENID号"/>
+    <entry name="vRoleId" type="string" size="64" desc="角色ID"/>
+    <entry name="vipLevel" type="int" desc="vip等级"/>
+    <entry name="StageId" type="int" desc="关卡ID"/>
+    <entry name="ElementId" type="int" desc="元素位面ID"/>
+    <entry name="status" type="int" desc="参考ATKSTATUS状态"/>
+    <entry name="time" type="int" defaultvalue="0" desc="战斗进行的时长(秒,仅非sweep时有效)"/>
+    <entry name="team1" type="int" desc="兵团1ID"/>
+    <entry name="team2" type="int" desc="兵团2ID"/>
+    <entry name="team3" type="int" desc="兵团3ID"/>
+    <entry name="team4" type="int" desc="兵团4ID"/>
+    <entry name="team5" type="int" desc="兵团5ID"/>
+    <entry name="team6" type="int" desc="兵团6ID"/>
+    <entry name="team7" type="int" desc="兵团7ID"/>
+    <entry name="team8" type="int" desc="兵团8ID"/>
+    <entry name="heroId" type="int" desc="英雄ID"/>
+    <entry name="sweep" type="int" defaultvalue="0" desc="是否开启扫荡:0否其他为次数"/>
+  </struct>
+
+  <!--//////////////////////////////////////////////////////
+    //////////GVG战斗流水//////////////////////////////////
+    //////////////////////////////////////////////////////-->
+  <macrosgroup name="ATKSTATUS" desc="不要随意修改，否则影响统计结果" >
+    <macro name="SUCCESS"     value="1" desc="成功"/>
+    <macro name="FAIL"        value="0" desc="失败"/>
+  </macrosgroup>
+
+  <struct  name="GvgBattleFlow"     version="1"     desc="GVG战斗流水">
+    <entry  name="GameSvrId"       type="string"    size="32"                       desc="登录的游戏服务器编号" />
+    <entry  name="dtEventTime"     type="datetime"  index="1"  defaultvalue="0"     desc="事件时间(格式 YYYY-MM-DD HH:MM:SS)"/>
+    <entry  name="vGameAppid"      type="string"    size="32"                       desc="(必填)游戏APPID" />
+    <entry  name="PlatID"          type="int"                  defaultvalue="0"     desc="(必填)ios 0 /android 1"/>
+    <entry  name="iZoneAreaID"     type="int"       index="1"  defaultvalue="0"     desc="(必填)针对分区分服的游戏填写分区id，用来唯一标示一个区；非分区分服游戏请填写0"/>
+    <entry  name="vopenid"         type="string"    size="64"                       desc="用户OPENID号" />
+    <entry  name="vRoleId"         type="string"    size="64"                       desc="角色ID" />
+    <entry  name="vipLevel"        type="int"                                       desc="vip等级" />
+    <entry  name="status"          type="int"                                       desc="参考ATKSTATUS状态" />
+    <entry  name="ownerPoint"      type="int"                                       desc="个人积分" />
+    <entry  name="cityId"          type="int"                                       desc="城池id" />
+    <entry  name="leftCityPoint"   type="int"                                       desc="城池剩余积分" />
+    <entry  name="serverId"        type="int"                                       desc="城池归属服务器" />
+  </struct>
+</metalib>
