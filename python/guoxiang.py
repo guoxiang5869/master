@@ -12,14 +12,16 @@
 #name = raw_input("shuru：")
 #print "hello", name
 
-name = raw_input('name: ')
+name = raw_input ('_id: ')
 print 'hello: ', name
-age = input('age: ')
+
+age = int(raw_input('age: '))#年龄=
 
 if age >= 18:	
 	print 'ok'
 else:
-	print 'no'
+	age = int(raw_input('age: '))
+
 
 
 #import sys
