@@ -12,7 +12,7 @@
 #name = raw_input("shuru：")
 #print "hello", name
 
-name = raw_input ('_id: ')
+name = raw_input ('your neme :')
 print 'hello: ', name
 
 age = int(raw_input('age: '))#年龄=
