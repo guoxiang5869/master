@@ -13,14 +13,15 @@
 #print "hello", name
 
 name = raw_input ('your neme :')
-print 'hello: ', name
+print 'hello: ',name
 
-age = int(raw_input('age: '))#年龄=
+age = int(raw_input('your age: '))#年龄=
 
 if age >= 18:	
 	print 'ok'
 else:
-	age = int(raw_input('age: '))
+	#age = int(raw_input('age: '))
+	print 'Sorry Under 18 years old stop '
 
 
 
